@@ -2,3 +2,4 @@ lem-in
 *.o
 obj/*
 lem-in.dSYM/Contents/*
+libft/libft.a
