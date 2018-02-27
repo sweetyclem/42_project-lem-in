@@ -1,3 +1,4 @@
 lem-in
 *.o
 obj/*
+lem-in.dSYM/Contents/*

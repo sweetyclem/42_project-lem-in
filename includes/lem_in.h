@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/26 11:31:13 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 11:12:27 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,18 @@ typedef struct	s_game
 }				t_game;
 
 /*
+** Structures
+*/
+t_room			*new_room(void);
+t_game			initialize_game(void);
+void			free_game(t_game *game);
+
+/*
 ** Parsing
 */
 void			read_input(t_game *game);
+void			parse_line(char *line, t_game *game);
+int				is_comment(char *str);
 
 /*
 ** Playing
