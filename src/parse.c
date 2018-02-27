@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 13:01:14 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 15:18:07 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,13 @@ void	get_room_info(char *line, t_game *game)
 
 	room = new_room();
 	split = ft_strsplit(line, ' ');
-	room->name = ft_strdup(split[0]);
-	room->x = ft_atoi(split[1]);
-	room->y = ft_atoi(split[2]);
+	if (split[0])
+	{
+		if (split[0][0] != 'L')
+			room->name = ft_strdup(split[0]);
+	}
+	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2]))
+		ft_exit_error("ERROR: wrong format for coordinates\n");
 	room->next = NULL;
 	add_room_end(game, room);
 	free(split[0]);

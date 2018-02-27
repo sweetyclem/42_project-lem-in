@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 08:00:47 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 13:14:11 by cpirlot          ###   ########.fr       */
+/*   Created: 2018/02/27 13:10:11 by cpirlot           #+#    #+#             */
+/*   Updated: 2018/02/27 15:16:22 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	main(void)
+void	check_missing_info(t_game *game)
 {
-	t_game	game;
+	t_room	*tmp;
 
-	game = initialize_game();
-	read_input(&game);
-	check_missing_info(&game);
-	free_game(&game);
-	return (0);
+	if (game->nb_ants <= 0)
+		ft_exit_error("ERROR : missing ants number\n");
+	if (!game->start || !game->end)
+		ft_exit_error("ERROR : missing start or end\n");
+	if (!game->rooms)
+		ft_exit_error("ERROR : no rooms\n");
+	tmp = game->rooms;
+	while (tmp)
+	{
+		if (tmp->name == NULL)
+			ft_exit_error("ERROR : missing room name\n");
+		tmp = tmp->next;
+	}
 }
