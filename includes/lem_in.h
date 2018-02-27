@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 11:45:37 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 12:57:50 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_room			*new_room(void);
 t_game			initialize_game(void);
 void			free_game(t_game *game);
 void			add_room_end(t_game *game, t_room *room);
+void			free_game(t_game *game);
 
 /*
 ** Parsing

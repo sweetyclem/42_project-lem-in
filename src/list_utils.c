@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 11:49:08 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 12:59:01 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,18 @@ t_game	initialize_game(void)
 
 void	free_game(t_game *game)
 {
+	t_room	*tmp;
+
+	tmp = game->rooms;
 	free(game->start);
 	free(game->end);
+	while (game->rooms)
+	{
+		tmp = game->rooms;
+		game->rooms = game->rooms->next;
+		free(tmp->name);
+		free(tmp);
+	}
 	free(game->rooms);
 }
 
