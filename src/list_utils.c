@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 12:59:01 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 13:02:37 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ void	free_game(t_game *game)
 void	add_room_end(t_game *game, t_room *room)
 {
 	t_room	*tmp;
+
 	tmp = game->rooms;
-	while(tmp->next != NULL)
+	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = room;
 	room->next = NULL;
