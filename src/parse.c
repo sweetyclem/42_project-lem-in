@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 15:55:12 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 16:37:42 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	read_input(t_game *game)
 {
 	char	*line;
 
-	get_next_line(0, &line);
+	if (get_next_line(0, &line) == 0 || ft_strlen(line) == 0)
+		ft_exit_error("ERROR: empty file\n");
 	if (!ft_isnumber(line))
 		ft_exit_error("ERROR : missing ants number\n");
 	ft_printf("%s\n", line);
@@ -24,7 +25,7 @@ void	read_input(t_game *game)
 		ft_exit_error("ERROR\n");
 	game->nb_ants = ft_atoi(line);
 	free(line);
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(0, &line) > 0 && ft_strlen(line) > 0)
 	{
 		ft_printf("%s\n", line);
 		if (!is_comment(line))
@@ -74,6 +75,7 @@ void	parse_line(char *line, t_game *game)
 	char	*str;
 
 	i = 0;
+	str = NULL;
 	if (line[0] == '#' && line[1] == '#')
 	{
 		if (ft_strcmp(&line[2], "start") == 0)
@@ -83,7 +85,7 @@ void	parse_line(char *line, t_game *game)
 			game->start = ft_strsub(str, 0, (ft_strchr(str, ' ') - str));
 			get_room_info(str, game);
 		}
-		else
+		else if (ft_strcmp(&line[2], "end") == 0)
 		{
 			get_next_line(0, &str);
 			ft_printf("%s\n", str);
