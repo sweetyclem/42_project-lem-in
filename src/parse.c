@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 15:18:07 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 15:55:12 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	read_input(t_game *game)
 	char	*line;
 
 	get_next_line(0, &line);
+	if (!ft_isnumber(line))
+		ft_exit_error("ERROR : missing ants number\n");
 	ft_printf("%s\n", line);
 	if (!ft_isnumber(line))
 		ft_exit_error("ERROR\n");
@@ -31,6 +33,10 @@ void	read_input(t_game *game)
 	}
 	if (line)
 		free(line);
+	if (!game->start || !game->end)
+		ft_exit_error("ERROR : missing start or end\n");
+	if (!game->rooms)
+		ft_exit_error("ERROR : no rooms\n");
 }
 
 int		is_comment(char *str)
@@ -47,11 +53,11 @@ void	get_room_info(char *line, t_game *game)
 
 	room = new_room();
 	split = ft_strsplit(line, ' ');
-	if (split[0])
-	{
-		if (split[0][0] != 'L')
-			room->name = ft_strdup(split[0]);
-	}
+	if (!split[0] || !split[1] || !split[2])
+		ft_exit_error("ERROR: wrong line format\n");
+	if (split[0][0] == 'L')
+		ft_exit_error("ERROR : room name can't start with an 'L'\n");
+	room->name = ft_strdup(split[0]);
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2]))
 		ft_exit_error("ERROR: wrong format for coordinates\n");
 	room->next = NULL;
@@ -75,12 +81,14 @@ void	parse_line(char *line, t_game *game)
 			get_next_line(0, &str);
 			ft_printf("%s\n", str);
 			game->start = ft_strsub(str, 0, (ft_strchr(str, ' ') - str));
+			get_room_info(str, game);
 		}
 		else
 		{
 			get_next_line(0, &str);
 			ft_printf("%s\n", str);
 			game->end = ft_strsub(str, 0, (ft_strchr(str, ' ') - str));
+			get_room_info(str, game);
 		}
 		free(str);
 	}

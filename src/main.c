@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:00:47 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 13:14:11 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 15:44:07 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(void)
 
 	game = initialize_game();
 	read_input(&game);
-	check_missing_info(&game);
 	free_game(&game);
 	return (0);
 }
