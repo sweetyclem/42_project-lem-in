@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 10:11:51 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 11:49:08 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_room	*new_room(void)
 
 	if (!(room = malloc(sizeof(t_room) * 1)))
 		return (NULL);
-	room->room_name = NULL;
+	room->name = NULL;
 	room->x = -1;
 	room->y = -1;
 	room->next = NULL;
@@ -41,4 +41,14 @@ void	free_game(t_game *game)
 	free(game->start);
 	free(game->end);
 	free(game->rooms);
+}
+
+void	add_room_end(t_game *game, t_room *room)
+{
+	t_room	*tmp;
+	tmp = game->rooms;
+	while(tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = room;
+	room->next = NULL;
 }

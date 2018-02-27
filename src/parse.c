@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 11:11:55 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 11:55:10 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ int		is_comment(char *str)
 	return (0);
 }
 
+void	get_room_info(char *line, t_game *game)
+{
+	char	**split;
+	t_room	room;
+
+	split = ft_strsplit(line, ' ');
+	room.name = ft_strdup(split[0]);
+	room.x = ft_atoi(split[1]);
+	room.y = ft_atoi(split[2]);
+	room.next = NULL;
+	add_room_end(game, &room);
+	ft_free_array(&split);
+}
+
 void	parse_line(char *line, t_game *game)
 {
 	int		i;
@@ -62,4 +76,6 @@ void	parse_line(char *line, t_game *game)
 		}
 		free(str);
 	}
+	else if (!ft_strchr(line, '-'))
+		get_room_info(line, game);
 }

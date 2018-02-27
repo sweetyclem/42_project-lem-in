@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 11:12:27 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 11:45:37 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 typedef struct	s_room
 {
-	char			*room_name;
+	char			*name;
 	int				x;
 	int				y;
 	struct s_room	*next;
@@ -36,6 +36,7 @@ typedef struct	s_game
 t_room			*new_room(void);
 t_game			initialize_game(void);
 void			free_game(t_game *game);
+void			add_room_end(t_game *game, t_room *room);
 
 /*
 ** Parsing
