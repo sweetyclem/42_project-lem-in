@@ -6,7 +6,7 @@
 #    By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 13:19:02 by cpirlot           #+#    #+#              #
-#    Updated: 2018/02/27 15:40:57 by cpirlot          ###   ########.fr        #
+#    Updated: 2018/02/28 15:52:22 by cpirlot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,6 @@ $(OBJDIR)/%.o: %.c
 lib:
 	@make -C libft/
 	@echo "\nLibft compilation : $(_CYAN)done$(_END)"
-
-dev: $(NAME)
 
 clean:
 	@$(RM) -rf $(OBJDIR)

@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 16:37:42 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/28 15:59:34 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		is_comment(char *str)
 	return (0);
 }
 
-void	get_room_info(char *line, t_game *game)
+void	get_room_info(char *line, t_game *game, int start, int end)
 {
 	char	**split;
 	t_room	*room;
@@ -59,6 +59,10 @@ void	get_room_info(char *line, t_game *game)
 	if (split[0][0] == 'L')
 		ft_exit_error("ERROR : room name can't start with an 'L'\n");
 	room->name = ft_strdup(split[0]);
+	if (start)
+		game->start = ft_strdup(split[0]);
+	if (end)
+		game->end = ft_strdup(split[0]);
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2]))
 		ft_exit_error("ERROR: wrong format for coordinates\n");
 	room->next = NULL;
@@ -81,19 +85,23 @@ void	parse_line(char *line, t_game *game)
 		if (ft_strcmp(&line[2], "start") == 0)
 		{
 			get_next_line(0, &str);
-			ft_printf("%s\n", str);
-			game->start = ft_strsub(str, 0, (ft_strchr(str, ' ') - str));
-			get_room_info(str, game);
+			if (ft_strlen(line) > 0)
+			{
+				ft_printf("%s\n", str);
+				get_room_info(str, game, 1, 0);
+			}
 		}
 		else if (ft_strcmp(&line[2], "end") == 0)
 		{
 			get_next_line(0, &str);
-			ft_printf("%s\n", str);
-			game->end = ft_strsub(str, 0, (ft_strchr(str, ' ') - str));
-			get_room_info(str, game);
+			if (ft_strlen(line) > 0)
+			{
+				ft_printf("%s\n", str);
+				get_room_info(str, game, 0, 1);
+			}
 		}
 		free(str);
 	}
 	else if (!ft_strchr(line, '-'))
-		get_room_info(line, game);
+		get_room_info(line, game, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 09:47:49 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/26 11:03:42 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/27 16:51:48 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char			*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *s1, const char *s2);
 char			*ft_strsub(const char *s, unsigned int start, size_t len);
+char			*ft_strsub_to(char *str, char c);
 char			*ft_strtrim(const char *s);
 int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strequ(const char *s1, const char *s2);
