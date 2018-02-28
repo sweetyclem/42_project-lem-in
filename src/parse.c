@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/28 15:59:34 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/02/28 16:37:26 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,32 +75,28 @@ void	get_room_info(char *line, t_game *game, int start, int end)
 
 void	parse_line(char *line, t_game *game)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = NULL;
 	if (line[0] == '#' && line[1] == '#')
 	{
 		if (ft_strcmp(&line[2], "start") == 0)
 		{
-			get_next_line(0, &str);
+			get_next_line(0, &line);
 			if (ft_strlen(line) > 0)
 			{
-				ft_printf("%s\n", str);
-				get_room_info(str, game, 1, 0);
+				ft_printf("%s\n", line);
+				get_room_info(line, game, 1, 0);
+				free(line);
 			}
 		}
 		else if (ft_strcmp(&line[2], "end") == 0)
 		{
-			get_next_line(0, &str);
+			get_next_line(0, &line);
 			if (ft_strlen(line) > 0)
 			{
-				ft_printf("%s\n", str);
-				get_room_info(str, game, 0, 1);
+				ft_printf("%s\n", line);
+				get_room_info(line, game, 0, 1);
 			}
+			free(line);
 		}
-		free(str);
 	}
 	else if (!ft_strchr(line, '-'))
 		get_room_info(line, game, 0, 0);
