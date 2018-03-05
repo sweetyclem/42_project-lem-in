@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 08:35:48 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 08:38:38 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	read_input(t_game *game)
 
 	if (get_next_line(0, &line) == 0 || ft_strlen(line) == 0)
 		ft_exit_error("ERROR: empty file\n");
-	game ->nb_ants = get_ant_nb(line);
+	game->nb_ants = get_ant_nb(line);
 	free(line);
 	while (get_next_line(0, &line) > 0 && ft_strlen(line) > 0)
 	{
@@ -35,7 +35,7 @@ void	read_input(t_game *game)
 		ft_exit_error("ERROR : no rooms\n");
 }
 
-int	get_ant_nb(char *line)
+int		get_ant_nb(char *line)
 {
 	int	ants;
 
