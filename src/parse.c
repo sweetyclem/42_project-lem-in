@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 14:22:26 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 16:37:43 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	read_input(t_game *game)
 		ft_exit_error("ERROR: missing start or end\n");
 	if (!game->rooms)
 		ft_exit_error("ERROR: no rooms\n");
-	if (!game->pipes)
+	if (!game->rooms->connections)
 		ft_exit_error("ERROR: no pipes\n");
 }
 

@@ -6,37 +6,36 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 14:33:23 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 16:36:17 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room	*new_room(void)
+t_room			*new_room(void)
 {
 	t_room	*room;
 
 	if (!(room = malloc(sizeof(t_room) * 1)))
 		return (NULL);
 	room->name = NULL;
-	room->parent = NULL;
+	room->connections = NULL;
 	room->next = NULL;
 	return (room);
 }
 
-t_pipe	*new_pipe(void)
+t_connection	*new_connection(void)
 {
-	t_pipe	*pipe;
+	t_connection	*connection;
 
-	if (!(pipe = malloc(sizeof(t_pipe) * 1)))
+	if (!(connection = malloc(sizeof(t_connection) * 1)))
 		return (NULL);
-	pipe->room1 = NULL;
-	pipe->room2 = NULL;
-	pipe->next = NULL;
-	return (pipe);
+	connection->name = NULL;
+	connection->next = NULL;
+	return (connection);
 }
 
-t_game	initialize_game(void)
+t_game			initialize_game(void)
 {
 	t_game	game;
 
@@ -44,33 +43,29 @@ t_game	initialize_game(void)
 	game.start = NULL;
 	game.end = NULL;
 	game.rooms = NULL;
-	game.pipes = NULL;
 	return (game);
 }
 
-void	free_game(t_game *game)
+void			free_game(t_game *game)
 {
-	t_room	*tmp_room;
-	t_pipe	*tmp_pipe;
+	t_room			*tmp_room;
+	t_connection	*tmp_connection;
 
 	free(game->start);
 	free(game->end);
 	while (game->rooms)
 	{
 		tmp_room = game->rooms;
+		while (tmp_room->connections)
+		{
+			tmp_connection = tmp_room->connections;
+			tmp_room->connections = tmp_room->connections->next;
+			free(tmp_connection);
+		}
+		free(tmp_room->connections);
 		game->rooms = game->rooms->next;
 		free(tmp_room->name);
-		free(tmp_room->parent);
 		free(tmp_room);
 	}
 	free(game->rooms);
-	while (game->pipes)
-	{
-		tmp_pipe = game->pipes;
-		game->pipes = game->pipes->next;
-		free(tmp_pipe->room1);
-		free(tmp_pipe->room2);
-		free(tmp_pipe);
-	}
-	free(game->pipes);
 }

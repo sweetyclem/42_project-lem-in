@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:17 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 14:27:31 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 16:51:51 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,42 @@
 
 void	get_pipe(char *line, t_game *game)
 {
-	char	**split;
-	t_pipe	*pipe;
+	char			**split;
+	t_room			*room;
 
-	pipe = new_pipe();
 	split = ft_strsplit(line, '-');
 	if (!split[0] || !split[1])
 		ft_exit_error("ERROR: wrong pipe line format\n");
 	if (!room_exists(game, split[0]) || !room_exists(game, split[1]))
 		ft_exit_error("ERROR: unknown room in pipe\n");
-	pipe->room1 = ft_strdup(split[0]);
-	pipe->room2 = ft_strdup(split[1]);
-	pipe->next = NULL;
-	if (pipe_exists(game, pipe))
-		ft_exit_error("ERROR: duplicate pipe\n");
-	add_pipe_end(game, pipe);
+	room = find_room(game, ft_strdup(split[0]));
+	add_connection_end(room, ft_strdup(split[1]));
+	room = find_room(game, ft_strdup(split[1]));
+	add_connection_end(room, ft_strdup(split[0]));
 	free(split[0]);
 	free(split[1]);
 	free(split);
 }
 
-int		pipe_exists(t_game *game, t_pipe *pipe)
+void	add_connection_end(t_room *room, char *connection_name)
 {
-	t_pipe	*tmp;
+	t_connection	*tmp;
+	t_connection	*new;
 
-	if (game->pipes == NULL)
-		return (0);
-	tmp = game->pipes;
-	while (tmp)
+	new = new_connection();
+	new->name = connection_name;
+	new->next = NULL;
+	if (room->connections == NULL)
 	{
-		if ((ft_strcmp(tmp->room1, pipe->room1) == 0)
-		&& (ft_strcmp(tmp->room2, pipe->room2) == 0))
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-void	add_pipe_end(t_game *game, t_pipe *pipe)
-{
-	t_pipe	*tmp;
-
-	if (game->pipes == NULL)
-	{
-		game->pipes = pipe;
+		room->connections = new;
 		return ;
 	}
-	tmp = game->pipes;
+	tmp = room->connections;
 	while (tmp->next != NULL)
+	{
+		if (ft_strcmp(tmp->name, connection_name) == 0)
+			ft_exit_error("ERROR: duplicate pipe\n");
 		tmp = tmp->next;
-	tmp->next = pipe;
-	pipe->next = NULL;
+	}
+	tmp->next = new;
 }
