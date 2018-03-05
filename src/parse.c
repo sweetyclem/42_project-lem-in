@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 14:01:00 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 14:22:26 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	read_input(t_game *game)
 		ft_exit_error("ERROR: no rooms\n");
 	if (!game->pipes)
 		ft_exit_error("ERROR: no pipes\n");
-	if (duplicate_room_name(game))
-		ft_exit_error("ERROR: double room name\n");
 }
 
 int		get_ant_nb(char *line)

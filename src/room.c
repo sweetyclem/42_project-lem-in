@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 14:00:44 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 14:26:31 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	get_room(char *line, t_game *game, int start, int end)
 		ft_exit_error("ERROR: wrong room line format\n");
 	if (split[0][0] == 'L')
 		ft_exit_error("ERROR: room name can't start with an 'L'\n");
+	if (room_exists(game, split[0]))
+		ft_exit_error("ERROR: duplicate room name\n");
 	room->name = ft_strdup(split[0]);
 	if (start)
 		game->start = ft_strdup(split[0]);
@@ -37,22 +39,6 @@ void	get_room(char *line, t_game *game, int start, int end)
 	free(split[1]);
 	free(split[2]);
 	free(split);
-}
-
-int		duplicate_room_name(t_game *game)
-{
-	t_room	*tmp;
-
-	if (game->rooms == NULL)
-		return (0);
-	tmp = game->rooms;
-	while (tmp && tmp->next)
-	{
-		if (ft_strcmp(tmp->name, tmp->next->name) == 0)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
 }
 
 int		room_exists(t_game	*game, char	*room)
