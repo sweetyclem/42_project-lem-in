@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 10:05:45 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 10:19:16 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		get_ant_nb(char *line)
 		ft_exit_error("ERROR: missing ants number\n");
 	ft_printf("%s\n", line);
 	ants = ft_atoi(line);
-	if (ants < 0 || ants > 2147483647)
+	if (ants <= 0 || ants > 2147483647)
 		ft_exit_error("ERROR: wrong ants number\n");
 	return (ants);
 }
