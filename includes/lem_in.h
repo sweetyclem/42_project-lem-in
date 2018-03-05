@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 14:23:51 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 15:33:17 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 typedef struct	s_room
 {
 	char			*name;
+	char			*parent;
 	struct s_room	*next;
 }				t_room;
 
@@ -45,7 +46,7 @@ t_game			initialize_game(void);
 void			free_game(t_game *game);
 void			add_room_end(t_game *game, t_room *room);
 void			add_pipe_end(t_game *game, t_pipe *pipe);
-void			free_game(t_game *game);
+t_room			*find_room(t_game *game, char *name);
 
 /*
 ** Parsing and error handling
@@ -61,5 +62,7 @@ int				pipe_exists(t_game	*game, t_pipe *pipe);
 /*
 ** Playing
 */
+void			get_parents(t_game *game);
+char			*find_connected_room(t_game *game, char *name);
 
 #endif

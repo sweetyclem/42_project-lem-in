@@ -1,5 +1,3 @@
-# echo "--------------------------------------10K map"
-# ./lem-in < maps/10K_map.txt
 echo "--------------------------------------empty file"
 ./lem-in < maps/empty_file
 echo "--------------------------------------bad end"
@@ -42,11 +40,3 @@ echo "--------------------------------------too few ants"
 ./lem-in < maps/err_too_few_ants.txt
 echo "--------------------------------------too many ants"
 ./lem-in < maps/err_too_many_ants.txt
-echo "--------------------------------------map 1"
-./lem-in < maps/map_1.txt
-echo "--------------------------------------map test"
-./lem-in < maps/map_test
-echo "--------------------------------------map test 2"
-./lem-in < maps/map_test2
-echo "--------------------------------------only start and end map"
-./lem-in < maps/only_start_end.txt
