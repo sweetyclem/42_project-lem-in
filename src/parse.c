@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/28 16:37:26 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 08:15:11 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	read_input(t_game *game)
 	if (!ft_isnumber(line))
 		ft_exit_error("ERROR : missing ants number\n");
 	ft_printf("%s\n", line);
-	if (!ft_isnumber(line))
-		ft_exit_error("ERROR\n");
 	game->nb_ants = ft_atoi(line);
 	free(line);
 	while (get_next_line(0, &line) > 0 && ft_strlen(line) > 0)
