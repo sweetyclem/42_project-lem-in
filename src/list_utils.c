@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/28 15:59:22 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 10:02:18 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_game	initialize_game(void)
 	game.nb_ants = -1;
 	game.start = NULL;
 	game.end = NULL;
-	game.rooms = new_room();
+	game.rooms = NULL;
 	return (game);
 }
 
@@ -55,9 +55,25 @@ void	add_room_end(t_game *game, t_room *room)
 {
 	t_room	*tmp;
 
+	if (game->rooms == NULL)
+		game->rooms = room;
 	tmp = game->rooms;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = room;
 	room->next = NULL;
+}
+
+int		check_double_room_name(t_game *game)
+{
+	t_room	*rooms;
+
+	rooms = game->rooms;
+	while (rooms && rooms->next)
+	{
+		if (ft_strcmp(rooms->name, rooms->next->name) == 0)
+			return (0);
+		rooms = rooms->next;
+	}
+	return (1);
 }
