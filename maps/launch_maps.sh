@@ -30,19 +30,19 @@ echo "--------------no end"
 ./lem-in < maps/err_no_end.txt
 # echo "--------------no pipe"
 #./lem-in < maps/err_no_pipes.txt
-# echo "--------------no rooms"
-#./lem-in < maps/err_no_rooms.txt
+echo "--------------no rooms"
+./lem-in < maps/err_no_rooms.txt
 echo "--------------no start"
 ./lem-in < maps/err_no_start.txt
 # echo "--------------pipe unknown room"
 #./lem-in < maps/err_pipe_unknown_room.txt
-# echo "--------------start is end"
-#./lem-in < maps/err_start_end.txt
-# echo "--------------coord too big"
-#./lem-in < maps/err_too_big_coord.txt
+echo "--------------start is end"
+./lem-in < maps/err_start_end.txt
+echo "--------------coord too big"
+./lem-in < maps/err_too_big_coord.txt
 echo "--------------too few ants"
 ./lem-in < maps/err_too_few_ants.txt
-echo "--------------too many ans"
+echo "--------------too many ants"
 ./lem-in < maps/err_too_many_ants.txt
 # echo "--------------map 1"
 #./lem-in < maps/map_1.txt

@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 08:38:38 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 09:02:08 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	read_input(t_game *game)
 	if (line)
 		free(line);
 	if (!game->start || !game->end)
-		ft_exit_error("ERROR : missing start or end\n");
+		ft_exit_error("ERROR: missing start or end\n");
 	if (!game->rooms)
-		ft_exit_error("ERROR : no rooms\n");
+		ft_exit_error("ERROR: no rooms\n");
 }
 
 int		get_ant_nb(char *line)
@@ -40,11 +40,11 @@ int		get_ant_nb(char *line)
 	int	ants;
 
 	if (!ft_isnumber(line))
-		ft_exit_error("ERROR : missing ants number\n");
+		ft_exit_error("ERROR: missing ants number\n");
 	ft_printf("%s\n", line);
 	ants = ft_atoi(line);
 	if (ants < 0 || ants > 2147483647)
-		ft_exit_error("ERROR : wrong ants number\n");
+		ft_exit_error("ERROR: wrong ants number\n");
 	return (ants);
 }
 
@@ -65,13 +65,14 @@ void	get_room_info(char *line, t_game *game, int start, int end)
 	if (!split[0] || !split[1] || !split[2])
 		ft_exit_error("ERROR: wrong line format\n");
 	if (split[0][0] == 'L')
-		ft_exit_error("ERROR : room name can't start with an 'L'\n");
+		ft_exit_error("ERROR: room name can't start with an 'L'\n");
 	room->name = ft_strdup(split[0]);
 	if (start)
 		game->start = ft_strdup(split[0]);
 	if (end)
 		game->end = ft_strdup(split[0]);
-	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2]))
+	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2])
+	|| ft_atoi(split[1]) < 0 || ft_atoi(split[2]) < 0)
 		ft_exit_error("ERROR: wrong format for coordinates\n");
 	room->next = NULL;
 	add_room_end(game, room);
