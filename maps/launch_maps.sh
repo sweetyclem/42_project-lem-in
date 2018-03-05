@@ -40,10 +40,10 @@ echo "--------------no start"
 #./lem-in < maps/err_start_end.txt
 # echo "--------------coord too big"
 #./lem-in < maps/err_too_big_coord.txt
-# echo "--------------too few ants"
-#./lem-in < maps/err_too_few_ants.txt
-# echo "--------------too many ans"
-#./lem-in < maps/err_too_many_ants.txt
+echo "--------------too few ants"
+./lem-in < maps/err_too_few_ants.txt
+echo "--------------too many ans"
+./lem-in < maps/err_too_many_ants.txt
 # echo "--------------map 1"
 #./lem-in < maps/map_1.txt
 # echo "--------------map test"

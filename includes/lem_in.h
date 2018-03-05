@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 15:43:58 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 08:32:58 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void			free_game(t_game *game);
 void			read_input(t_game *game);
 void			parse_line(char *line, t_game *game);
 int				is_comment(char *str);
+int				get_ant_nb(char *line);
 
 /*
 ** Playing
