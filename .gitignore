@@ -3,3 +3,4 @@ lem-in
 obj/*
 lem-in.dSYM/Contents/*
 libft/libft.a
+libft/obj/*
