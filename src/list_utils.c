@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 10:02:18 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 13:29:19 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ t_room	*new_room(void)
 	return (room);
 }
 
+t_pipe	*new_pipe(void)
+{
+	t_pipe	*pipe;
+
+	if (!(pipe = malloc(sizeof(t_pipe) * 1)))
+		return (NULL);
+	pipe->room1 = NULL;
+	pipe->room2 = NULL;
+	pipe->next = NULL;
+	return (pipe);
+}
+
 t_game	initialize_game(void)
 {
 	t_game	game;
@@ -31,49 +43,32 @@ t_game	initialize_game(void)
 	game.start = NULL;
 	game.end = NULL;
 	game.rooms = NULL;
+	game.pipes = NULL;
 	return (game);
 }
 
 void	free_game(t_game *game)
 {
-	t_room	*tmp;
+	t_room	*tmp_room;
+	t_pipe	*tmp_pipe;
 
-	tmp = game->rooms;
 	free(game->start);
 	free(game->end);
 	while (game->rooms)
 	{
-		tmp = game->rooms;
+		tmp_room = game->rooms;
 		game->rooms = game->rooms->next;
-		free(tmp->name);
-		free(tmp);
+		free(tmp_room->name);
+		free(tmp_room);
 	}
 	free(game->rooms);
-}
-
-void	add_room_end(t_game *game, t_room *room)
-{
-	t_room	*tmp;
-
-	if (game->rooms == NULL)
-		game->rooms = room;
-	tmp = game->rooms;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = room;
-	room->next = NULL;
-}
-
-int		check_double_room_name(t_game *game)
-{
-	t_room	*rooms;
-
-	rooms = game->rooms;
-	while (rooms && rooms->next)
+	while (game->pipes)
 	{
-		if (ft_strcmp(rooms->name, rooms->next->name) == 0)
-			return (0);
-		rooms = rooms->next;
+		tmp_pipe = game->pipes;
+		game->pipes = game->pipes->next;
+		free(tmp_pipe->room1);
+		free(tmp_pipe->room2);
+		free(tmp_pipe);
 	}
-	return (1);
+	free(game->pipes);
 }
