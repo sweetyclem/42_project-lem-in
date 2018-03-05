@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 13:13:05 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 14:01:00 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	read_input(t_game *game)
 		ft_exit_error("ERROR: missing start or end\n");
 	if (!game->rooms)
 		ft_exit_error("ERROR: no rooms\n");
-	if (check_double_room_name(game) != 1)
+	if (!game->pipes)
+		ft_exit_error("ERROR: no pipes\n");
+	if (duplicate_room_name(game))
 		ft_exit_error("ERROR: double room name\n");
 }
 
@@ -78,5 +80,5 @@ void	parse_line(char *line, t_game *game)
 	else if (!ft_strchr(line, '-'))
 		get_room(line, game, 0, 0);
 	else if (ft_strchr(line, '-'))
-		get_pipe(line, game, 0, 0);
+		get_pipe(line, game);
 }

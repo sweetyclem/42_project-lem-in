@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 13:24:54 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/05 14:00:44 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 	free(split);
 }
 
-int		check_double_room_name(t_game *game)
+int		duplicate_room_name(t_game *game)
 {
 	t_room	*tmp;
 
@@ -49,10 +49,10 @@ int		check_double_room_name(t_game *game)
 	while (tmp && tmp->next)
 	{
 		if (ft_strcmp(tmp->name, tmp->next->name) == 0)
-			return (0);
+			return (1);
 		tmp = tmp->next;
 	}
-	return (1);
+	return (0);
 }
 
 int		room_exists(t_game	*game, char	*room)

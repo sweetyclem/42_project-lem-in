@@ -10,8 +10,8 @@ echo "--------------------------------------bad start"
 ./lem-in < maps/err_bad_start.txt
 echo "--------------------------------------bad start 2"
 ./lem-in < maps/err_bad_start2.txt
-#echo "--------------------------------------double pipe"
-#./lem-in < maps/err_double_pipe.txt
+echo "--------------------------------------double pipe"
+./lem-in < maps/err_double_pipe.txt
 echo "--------------------------------------double room name"
 ./lem-in < maps/err_double_room_name.txt
 echo "--------------------------------------empty map"
@@ -26,14 +26,14 @@ echo "--------------------------------------negative ant nb"
 ./lem-in < maps/err_neg_ants.txt
 echo "--------------------------------------no end"
 ./lem-in < maps/err_no_end.txt
-# echo "--------------------------------------no pipe"
-#./lem-in < maps/err_no_pipes.txt
+echo "--------------------------------------no pipe"
+./lem-in < maps/err_no_pipes.txt
 echo "--------------------------------------no rooms"
 ./lem-in < maps/err_no_rooms.txt
 echo "--------------------------------------no start"
 ./lem-in < maps/err_no_start.txt
-# echo "--------------------------------------pipe unknown room"
-#./lem-in < maps/err_pipe_unknown_room.txt
+echo "--------------------------------------pipe unknown room"
+./lem-in < maps/err_pipe_unknown_room.txt
 echo "--------------------------------------start is end"
 ./lem-in < maps/err_start_end.txt
 echo "--------------------------------------coord too big"
