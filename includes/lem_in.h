@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 16:25:15 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:04:43 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ typedef struct	s_room
 
 typedef struct	s_game
 {
-	int		nb_ants;
-	char	*start;
-	char	*end;
-	t_room	*rooms;
+	int				nb_ants;
+	char			*start;
+	char			*end;
+	t_room			*rooms;
+	t_connection	*path;
 }				t_game;
 
 /*

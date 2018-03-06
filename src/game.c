@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 16:49:48 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:10:27 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_game			initialize_game(void)
 	game.start = NULL;
 	game.end = NULL;
 	game.rooms = NULL;
+	game.path = NULL;
 	return (game);
 }
 
@@ -37,6 +38,7 @@ void			free_game(t_game *game)
 		free(tmp_room->name);
 		free(tmp_room);
 	}
+	free_connections(&game->path);
 	free(game->rooms);
 }
 

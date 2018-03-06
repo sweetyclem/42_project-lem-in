@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 08:51:33 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 17:02:13 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:10:37 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,12 @@ t_connection *queue)
 void			find_path(t_game *game)
 {
 	t_room			*current_room;
-	t_connection	*path;
 	t_connection	*connection;
 	char			*connected_name;
 
-	path = NULL;
 	current_room = find_room(game, game->end);
 	connected_name = NULL;
+	game->path = NULL;
 	while (ft_strcmp(connected_name, game->start) != 0)
 	{
 		if (connected_name)
@@ -85,17 +84,16 @@ void			find_path(t_game *game)
 		connected_name = connection_visited(game, current_room->connections);
 		connection = new_connection();
 		connection->name = ft_strdup(connected_name);
-		path = add_connection_end(path, connection);
+		game->path = add_connection_end(game->path, connection);
 		current_room = find_room(game, connected_name);
 	}
-	t_connection	*tmp = path;
+	t_connection	*tmp = game->path;
 	while (tmp)
 	{
 		ft_printf("\npath item : %s\n", tmp->name);
 		tmp = tmp->next;
 	}
 	free(connected_name);
-	free_connections(&path);
 }
 
 char			*connection_visited(t_game *game, t_connection *connections)

@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:40:06 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 16:50:39 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:07:53 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_connection	*add_connection_end(t_connection *lst, t_connection *item)
 		return (lst);
 	}
 	list = lst;
-	while (list->next != NULL)
+	while (list->next)
 		list = list->next;
 	list->next = item;
 	item->next = NULL;
