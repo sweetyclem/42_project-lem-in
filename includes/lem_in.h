@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 15:58:06 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 16:25:15 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_game
 */
 t_game			initialize_game(void);
 void			free_game(t_game *game);
+void			free_connections(t_connection **connections);
 t_room			*new_room(void);
 t_room			*find_room(t_game *game, char *name);
 void			add_room_end(t_game *game, t_room *room);

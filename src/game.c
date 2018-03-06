@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 15:41:59 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 16:27:02 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,30 @@ t_game			initialize_game(void)
 void			free_game(t_game *game)
 {
 	t_room			*tmp_room;
-	t_connection	*tmp_connection;
 
 	free(game->start);
 	free(game->end);
 	while (game->rooms)
 	{
 		tmp_room = game->rooms;
-		while (tmp_room->connections)
-		{
-			tmp_connection = tmp_room->connections;
-			tmp_room->connections = tmp_room->connections->next;
-			free(tmp_connection->name);
-			free(tmp_connection);
-		}
-		free(tmp_room->connections);
+		free_connections(&tmp_room->connections);
 		game->rooms = game->rooms->next;
 		free(tmp_room->name);
 		free(tmp_room);
 	}
 	free(game->rooms);
+}
+
+void		free_connections(t_connection **connections)
+{
+	t_connection	*tmp_connection;
+
+	while (*connections)
+	{
+		tmp_connection = *connections;
+		*connections = (*connections)->next;
+		free(tmp_connection->name);
+		free(tmp_connection);
+	}
+	free(*connections);
 }
