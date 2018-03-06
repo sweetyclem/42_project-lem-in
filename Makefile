@@ -6,7 +6,7 @@
 #    By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 13:19:02 by cpirlot           #+#    #+#              #
-#    Updated: 2018/03/05 13:19:00 by cpirlot          ###   ########.fr        #
+#    Updated: 2018/03/06 10:09:46 by cpirlot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=  lem-in
 
 CC			= gcc
 FLAGS		= -Wall -Werror -Wextra -g
-SRC			= main.c parse.c list_utils.c room.c pipe.c
+SRC			= main.c parse.c list_utils.c room.c pipe.c queue.c solve.c
 OBJDIR		= obj
 OBJ	= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 VPATH:=includes/:${VPATH}

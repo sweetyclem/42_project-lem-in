@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:17 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 16:51:51 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 10:26:24 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	get_pipe(char *line, t_game *game)
 		ft_exit_error("ERROR: wrong pipe line format\n");
 	if (!room_exists(game, split[0]) || !room_exists(game, split[1]))
 		ft_exit_error("ERROR: unknown room in pipe\n");
-	room = find_room(game, ft_strdup(split[0]));
+	room = find_room(game, split[0]);
 	add_connection_end(room, ft_strdup(split[1]));
-	room = find_room(game, ft_strdup(split[1]));
+	room = find_room(game, split[1]);
 	add_connection_end(room, ft_strdup(split[0]));
 	free(split[0]);
 	free(split[1]);
@@ -33,8 +33,8 @@ void	get_pipe(char *line, t_game *game)
 
 void	add_connection_end(t_room *room, char *connection_name)
 {
-	t_connection	*tmp;
-	t_connection	*new;
+	t_connect	*tmp;
+	t_connect	*new;
 
 	new = new_connection();
 	new->name = connection_name;

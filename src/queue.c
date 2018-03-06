@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 08:00:47 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 08:52:01 by cpirlot          ###   ########.fr       */
+/*   Created: 2018/03/06 09:01:03 by cpirlot           #+#    #+#             */
+/*   Updated: 2018/03/06 12:03:30 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	main(void)
+t_queue	*add_queue_end(t_queue *list, t_queue *queue)
 {
-	t_game	game;
+	t_queue	*tmp;
 
-	game = initialize_game();
-	read_input(&game);
-	solve(&game);
-	free_game(&game);
-	return (0);
+	if (list == NULL)
+	{
+		list = queue;
+		return (list);
+	}
+	tmp = list;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = queue;
+	queue->next = NULL;
+	return (list);
 }

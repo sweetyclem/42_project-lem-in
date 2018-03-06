@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 16:49:05 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 12:05:08 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,21 @@ typedef struct	s_connection
 {
 	char				*name;
 	struct s_connection	*next;
-}				t_connection;
+}				t_connect;
 
 typedef struct	s_room
 {
 	char			*name;
-	t_connection	*connections;
+	t_connect		*connections;
+	int				visited;
 	struct s_room	*next;
 }				t_room;
+
+typedef struct	s_queue
+{
+	char			*room_name;
+	struct s_queue	*next;
+}				t_queue;
 
 typedef struct	s_game
 {
@@ -39,11 +46,13 @@ typedef struct	s_game
 ** Structures
 */
 t_room			*new_room(void);
-t_connection	*new_connection(void);
+t_connect		*new_connection(void);
+t_queue			*new_queue(void);
 t_game			initialize_game(void);
 void			free_game(t_game *game);
 void			add_room_end(t_game *game, t_room *room);
 void			add_connection_end(t_room *room, char *connection_name);
+t_queue			*add_queue_end(t_queue *list, t_queue *queue);
 t_room			*find_room(t_game *game, char *name);
 
 /*
@@ -59,5 +68,8 @@ int				room_exists(t_game	*game, char	*room);
 /*
 ** Playing
 */
+int				solve(t_game *game);
+t_queue			*queue_connections(t_game *game, t_connect *connec,
+				t_queue *queue_list);
 
 #endif

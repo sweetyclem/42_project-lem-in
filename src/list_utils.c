@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/05 16:36:17 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 10:25:31 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,31 @@ t_room			*new_room(void)
 		return (NULL);
 	room->name = NULL;
 	room->connections = NULL;
+	room->visited = 0;
 	room->next = NULL;
 	return (room);
 }
 
-t_connection	*new_connection(void)
+t_connect	*new_connection(void)
 {
-	t_connection	*connection;
+	t_connect	*connection;
 
-	if (!(connection = malloc(sizeof(t_connection) * 1)))
+	if (!(connection = malloc(sizeof(t_connect) * 1)))
 		return (NULL);
 	connection->name = NULL;
 	connection->next = NULL;
 	return (connection);
+}
+
+t_queue			*new_queue(void)
+{
+	t_queue	*queue;
+
+	if (!(queue = malloc(sizeof(t_queue) * 1)))
+		return (NULL);
+	queue->room_name = NULL;
+	queue->next = NULL;
+	return (queue);
 }
 
 t_game			initialize_game(void)
@@ -49,7 +61,7 @@ t_game			initialize_game(void)
 void			free_game(t_game *game)
 {
 	t_room			*tmp_room;
-	t_connection	*tmp_connection;
+	t_connect	*tmp_connection;
 
 	free(game->start);
 	free(game->end);
@@ -60,6 +72,7 @@ void			free_game(t_game *game)
 		{
 			tmp_connection = tmp_room->connections;
 			tmp_room->connections = tmp_room->connections->next;
+			free(tmp_connection->name);
 			free(tmp_connection);
 		}
 		free(tmp_room->connections);
