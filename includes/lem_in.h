@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 12:05:08 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 14:45:11 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			add_room_end(t_game *game, t_room *room);
 void			add_connection_end(t_room *room, char *connection_name);
 t_queue			*add_queue_end(t_queue *list, t_queue *queue);
 t_room			*find_room(t_game *game, char *name);
+int				item_in_queue(t_queue *list, char *name);
 
 /*
 ** Parsing and error handling
@@ -68,8 +69,10 @@ int				room_exists(t_game	*game, char	*room);
 /*
 ** Playing
 */
-int				solve(t_game *game);
+int				search_graph(t_game *game);
 t_queue			*queue_connections(t_game *game, t_connect *connec,
 				t_queue *queue_list);
+char			*get_connected_visited(t_game *game, t_connect *connections);
+void			find_path(t_game *game);
 
 #endif

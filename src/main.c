@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:00:47 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 08:52:01 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 13:58:16 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	main(void)
 
 	game = initialize_game();
 	read_input(&game);
-	solve(&game);
+	search_graph(&game);
+	find_path(&game);
 	free_game(&game);
+		// ///////////////////////////free path
 	return (0);
 }

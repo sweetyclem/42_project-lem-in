@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 09:01:03 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 12:03:30 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 14:46:18 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,18 @@ t_queue	*add_queue_end(t_queue *list, t_queue *queue)
 	tmp->next = queue;
 	queue->next = NULL;
 	return (list);
+}
+
+int	item_in_queue(t_queue *list, char *name)
+{
+	t_queue	*lst;
+
+	lst = list;
+	while (lst)
+	{
+		if (ft_strcmp(lst->room_name, name) == 0)
+			return (1);
+		lst = lst->next;
+	}
+	return (0);
 }
