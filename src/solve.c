@@ -36,7 +36,7 @@ ft_printf("\n");
 		if (!current->visited)
 			current->visited = 1;
 ft_printf("current : %s\n", current->name);
-		queue = queue_connections(game, current->connections, queue);
+		queue = queue_connections(game, current, queue);
 t_connection *lst = queue;
 while(lst)
 {
@@ -48,19 +48,21 @@ while(lst)
 	return (0);
 }
 
-t_connection	*queue_connections(t_game *game, t_connection *connections,
-t_connection *queue)
+t_connection	*queue_connections(t_game *game, t_room *room, t_connection *queue)
 {
-	t_room			*tmp_room;
+	t_room			*connected_room;
 	t_connection	*queue_item;
+	t_connection	*connections;
 
+	connections = room->connections;
 	while (connections)
 	{
-		tmp_room = find_room(game, connections->name);
-		if (!tmp_room->visited && !connection_in_list(queue, tmp_room->name))
+		connected_room = find_room(game, connections->name);
+		if (!connected_room->visited && !connection_in_list(queue, connected_room->name))
 		{
 			queue_item = new_connection();
-			queue_item->name = ft_strdup(tmp_room->name);
+			queue_item->name = ft_strdup(connected_room->name);
+			connected_room->prev = ft_strdup(room->name);
 			queue = add_connection_end(queue, queue_item);
 		}
 		connections = connections->next;
@@ -81,7 +83,7 @@ void			find_path(t_game *game)
 	{
 		if (connected_name)
 			free(connected_name);
-		connected_name = connection_visited(game, current_room->connections);
+		connected_name = ft_strdup(current_room->prev);
 		connection = new_connection();
 		connection->name = ft_strdup(connected_name);
 		game->path = add_connection_end(game->path, connection);
@@ -94,18 +96,4 @@ void			find_path(t_game *game)
 		tmp = tmp->next;
 	}
 	free(connected_name);
-}
-
-char			*connection_visited(t_game *game, t_connection *connections)
-{
-	t_room		*connected;
-
-	while (connections)
-	{
-		connected = find_room(game, connections->name);
-		if (connected->visited)
-			return (ft_strdup(connected->name));
-		connections = connections->next;
-	}
-	return (NULL);
 }

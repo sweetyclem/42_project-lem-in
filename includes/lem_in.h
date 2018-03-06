@@ -25,6 +25,7 @@ typedef struct	s_room
 	char			*name;
 	t_connection	*connections;
 	int				visited;
+	char			*prev;
 	struct s_room	*next;
 }				t_room;
 
@@ -65,8 +66,7 @@ int				room_exists(t_game	*game, char	*room);
 ** Playing
 */
 int				search_graph(t_game *game);
-t_connection	*queue_connections(t_game *game, t_connection *connections,
-				t_connection *queue);
+t_connection	*queue_connections(t_game *game, t_room *room, t_connection *queue);
 char			*connection_visited(t_game *game, t_connection *connections);
 void			find_path(t_game *game);
 

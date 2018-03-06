@@ -21,6 +21,7 @@ t_room	*new_room(void)
 	room->name = NULL;
 	room->connections = NULL;
 	room->visited = 0;
+	room->prev = NULL;
 	room->next = NULL;
 	return (room);
 }

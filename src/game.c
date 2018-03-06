@@ -36,6 +36,7 @@ void			free_game(t_game *game)
 		free_connections(&tmp_room->connections);
 		game->rooms = game->rooms->next;
 		free(tmp_room->name);
+		free(tmp_room->prev);
 		free(tmp_room);
 	}
 	free_connections(&game->path);
