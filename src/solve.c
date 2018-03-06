@@ -6,13 +6,13 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 08:51:33 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 16:49:38 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:00:25 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		search_graph(t_game *game)
+int				search_graph(t_game *game)
 {
 	t_connection	*queue;
 	t_connection	*tmp;
@@ -22,7 +22,7 @@ int		search_graph(t_game *game)
 	queue->name = ft_strdup(game->start);
 	while (queue)
 	{
-		ft_printf("\n");
+ft_printf("\n");
 		current = find_room(game, queue->name);
 		tmp = queue;
 		queue = queue->next;
@@ -35,16 +35,15 @@ int		search_graph(t_game *game)
 		}
 		if (!current->visited)
 			current->visited = 1;
-		ft_printf("current : %s\n", current->name);
+ft_printf("current : %s\n", current->name);
 		queue = queue_connections(game, current->connections, queue);
-		t_connection *lst = queue;
-		while(lst)
-		{
-			ft_printf("queue : %s\n", lst->name);
-			lst = lst->next;
-		}
+t_connection *lst = queue;
+while(lst)
+{
+	ft_printf("queue : %s\n", lst->name);
+	lst = lst->next;
+}
 	}
-			ft_printf("here\n");
 	free(queue);
 	return (0);
 }
@@ -69,12 +68,12 @@ t_connection *queue)
 	return (queue);
 }
 
-void	find_path(t_game *game)
+void			find_path(t_game *game)
 {
-	t_room		*current_room;
+	t_room			*current_room;
 	t_connection	*path;
-	t_connection	*new_connect;
-	char		*connected_name;
+	t_connection	*connection;
+	char			*connected_name;
 
 	path = NULL;
 	current_room = find_room(game, game->end);
@@ -84,21 +83,11 @@ void	find_path(t_game *game)
 		if (connected_name)
 			free(connected_name);
 		connected_name = connection_visited(game, current_room->connections);
-		if (!path)
-		{
-			path = new_connection();
-			path->name = ft_strdup(connected_name);
-		}
-		else
-		{
-			new_connect = new_connection();
-			new_connect->name = ft_strdup(connected_name);
-			new_connect->next = path;
-			path = new_connect;
-		}
+		connection = new_connection();
+		connection->name = ft_strdup(connected_name);
+		add_connection_end(path, connection);
 		current_room = find_room(game, connected_name);
 	}
-
 	t_connection	*tmp = path;
 	while (tmp)
 	{
@@ -109,7 +98,7 @@ void	find_path(t_game *game)
 	free_connections(&path);
 }
 
-char	*connection_visited(t_game *game, t_connection *connections)
+char			*connection_visited(t_game *game, t_connection *connections)
 {
 	t_room		*connected;
 
