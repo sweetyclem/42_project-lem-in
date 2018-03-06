@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 14:45:11 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 15:58:06 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,15 @@ typedef struct	s_connection
 {
 	char				*name;
 	struct s_connection	*next;
-}				t_connect;
+}				t_connection;
 
 typedef struct	s_room
 {
 	char			*name;
-	t_connect		*connections;
+	t_connection	*connections;
 	int				visited;
 	struct s_room	*next;
 }				t_room;
-
-typedef struct	s_queue
-{
-	char			*room_name;
-	struct s_queue	*next;
-}				t_queue;
 
 typedef struct	s_game
 {
@@ -45,16 +39,14 @@ typedef struct	s_game
 /*
 ** Structures
 */
-t_room			*new_room(void);
-t_connect		*new_connection(void);
-t_queue			*new_queue(void);
 t_game			initialize_game(void);
 void			free_game(t_game *game);
-void			add_room_end(t_game *game, t_room *room);
-void			add_connection_end(t_room *room, char *connection_name);
-t_queue			*add_queue_end(t_queue *list, t_queue *queue);
+t_room			*new_room(void);
 t_room			*find_room(t_game *game, char *name);
-int				item_in_queue(t_queue *list, char *name);
+void			add_room_end(t_game *game, t_room *room);
+t_connection	*new_connection(void);
+t_connection	*add_connection_end(t_connection *lst, t_connection *item);
+int				connection_in_list(t_connection *list, char *name);
 
 /*
 ** Parsing and error handling
@@ -64,15 +56,16 @@ void			parse_line(char *line, t_game *game);
 int				get_ant_nb(char *line);
 void			get_room(char *line, t_game *game, int start, int end);
 void			get_pipe(char *line, t_game *game);
+void			create_connection(t_game *game, char *str1, char* str2);
 int				room_exists(t_game	*game, char	*room);
 
 /*
 ** Playing
 */
 int				search_graph(t_game *game);
-t_queue			*queue_connections(t_game *game, t_connect *connec,
-				t_queue *queue_list);
-char			*get_connected_visited(t_game *game, t_connect *connections);
+t_connection	*queue_connections(t_game *game, t_connection *connections,
+				t_connection *queue);
+char			*connection_visited(t_game *game, t_connection *connections);
 void			find_path(t_game *game);
 
 #endif

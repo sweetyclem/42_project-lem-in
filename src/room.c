@@ -6,11 +6,24 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 08:59:28 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 15:41:17 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_room			*new_room(void)
+{
+	t_room	*room;
+
+	if (!(room = malloc(sizeof(t_room) * 1)))
+		return (NULL);
+	room->name = NULL;
+	room->connections = NULL;
+	room->visited = 0;
+	room->next = NULL;
+	return (room);
+}
 
 void	get_room(char *line, t_game *game, int start, int end)
 {
