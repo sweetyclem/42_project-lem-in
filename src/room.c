@@ -6,13 +6,13 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 15:41:17 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 16:50:17 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room			*new_room(void)
+t_room	*new_room(void)
 {
 	t_room	*room;
 

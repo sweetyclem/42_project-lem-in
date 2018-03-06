@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:40:06 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 15:59:35 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/06 16:50:39 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			get_pipe(char *line, t_game *game)
 	free(split);
 }
 
-void			create_connection(t_game *game, char *str1, char* str2)
+void			create_connection(t_game *game, char *str1, char *str2)
 {
 	t_connection	*connection;
 	t_room			*room;
