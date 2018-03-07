@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 08:51:33 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 17:10:37 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:52:55 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ ft_printf("\n");
 		if (!current->visited)
 			current->visited = 1;
 ft_printf("current : %s\n", current->name);
-		queue = queue_connections(game, current, queue);
+		queue = queue_connect(game, current, queue);
 t_connection *lst = queue;
 while(lst)
 {
@@ -48,21 +48,21 @@ while(lst)
 	return (0);
 }
 
-t_connection	*queue_connections(t_game *game, t_room *room, t_connection *queue)
+t_connection	*queue_connect(t_game *game, t_room *room, t_connection *queue)
 {
-	t_room			*connected_room;
+	t_room			*connected;
 	t_connection	*queue_item;
 	t_connection	*connections;
 
 	connections = room->connections;
 	while (connections)
 	{
-		connected_room = find_room(game, connections->name);
-		if (!connected_room->visited && !connection_in_list(queue, connected_room->name))
+		connected = find_room(game, connections->name);
+		if (!connected->visited && !connection_in_list(queue, connected->name))
 		{
 			queue_item = new_connection();
-			queue_item->name = ft_strdup(connected_room->name);
-			connected_room->prev = ft_strdup(room->name);
+			queue_item->name = ft_strdup(connected->name);
+			connected->prev = ft_strdup(room->name);
 			queue = add_connection_end(queue, queue_item);
 		}
 		connections = connections->next;

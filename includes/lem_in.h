@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 17:04:43 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:53:41 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void			parse_line(char *line, t_game *game);
 int				get_ant_nb(char *line);
 void			get_room(char *line, t_game *game, int start, int end);
 void			get_pipe(char *line, t_game *game);
-void			create_connection(t_game *game, char *str1, char* str2);
+void			create_connection(t_game *game, char *str1, char *str2);
 int				room_exists(t_game	*game, char	*room);
 
 /*
 ** Playing
 */
 int				search_graph(t_game *game);
-t_connection	*queue_connections(t_game *game, t_room *room, t_connection *queue);
+t_connection	*queue_connect(t_game *game, t_room *room, t_connection *queue);
 char			*connection_visited(t_game *game, t_connection *connections);
 void			find_path(t_game *game);
 
