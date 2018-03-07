@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 15:41:38 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 16:43:24 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	get_ant_nb(char *line, t_game *game)
 	}
 	else if (get_next_line(0, &line) > 0)
 		get_ant_nb(line, game);
-	// free(line);
 }
 
 void	parse_line(char *line, t_game *game)
