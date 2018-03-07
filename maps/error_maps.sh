@@ -40,3 +40,5 @@ echo "--------------------------------------too few ants"
 ./lem-in < maps/err_too_few_ants.txt
 echo "--------------------------------------too many ants"
 ./lem-in < maps/err_too_many_ants.txt
+echo "--------------------------------------duplicate map"
+./lem-in < maps/err_duplicate.map

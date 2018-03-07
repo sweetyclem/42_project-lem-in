@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 12:03:36 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 13:51:18 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,28 @@ void	parse_line(char *line, t_game *game)
 	if (line[0] == '#' && line[1] == '#')
 	{
 		if (ft_strcmp(&line[2], "start") == 0)
-		{
-			get_next_line(0, &line);
-			if (ft_strlen(line) == 0)
-				ft_exit_error("ERROR: empty line\n");
-			ft_printf("%s\n", line);
-			get_room(line, game, 1, 0);
-			free(line);
-		}
+			get_start_or_end(game, 1, 0);
 		else if (ft_strcmp(&line[2], "end") == 0)
-		{
-			get_next_line(0, &line);
-			if (ft_strlen(line) == 0)
-				ft_exit_error("ERROR: empty line\n");
-			ft_printf("%s\n", line);
-			get_room(line, game, 0, 1);
-			free(line);
-		}
+			get_start_or_end(game, 0, 1);
 	}
 	else if (!ft_strchr(line, '-'))
 		get_room(line, game, 0, 0);
 	else if (ft_strchr(line, '-'))
 		get_link(line, game);
+}
+
+void	get_start_or_end(t_game *game, int start, int end)
+{
+	char	*line;
+
+	get_next_line(0, &line);
+	if (ft_strlen(line) == 0)
+		ft_exit_error("ERROR: empty line\n");
+	if (line[0] == '#')
+		ft_exit_error("ERROR: wrong start or end format\n");
+	ft_printf("%s\n", line);
+	get_room(line, game, start, end);
+	free(line);
 }
 
 void	get_link(char *line, t_game *game)
