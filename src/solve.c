@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 08:51:33 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 08:02:23 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 08:26:01 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void			find_path(t_game *game)
 		connected_name = ft_strdup(current_room->prev);
 		connection = new_connection();
 		connection->name = ft_strdup(connected_name);
-		game->path = add_connection(game->path, connection);
+		if (ft_strcmp(connected_name, game->start) != 0)
+			game->path = add_connection(game->path, connection);
 		current_room = find_room(game, connected_name);
 	}
 t_connection	*tmp = game->path;
