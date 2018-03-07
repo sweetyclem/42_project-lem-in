@@ -6,18 +6,15 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 16:25:53 by cpirlot           #+#    #+#             */
-/*   Updated: 2017/11/13 16:26:44 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:31:37 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-const char	*ft_skip_whitespace(const char *str)
+char	*ft_skip_whitespace(char *str)
 {
-	const char	*s;
-
-	s = str;
-	while ((*s >= 9 && *s <= 13) || *s == 32)
-		s++;
-	return (s);
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	return (str);
 }

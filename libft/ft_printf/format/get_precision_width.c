@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 13:40:24 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/01/22 06:57:51 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:43:32 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ int	get_precision(char *str)
 {
 	int		i;
 	int		j;
-	char	tmp[ft_strlen(str)];
+	int		res;
+	char	*tmp;
 
 	i = 0;
 	j = 0;
-	ft_memset(tmp, '\0', ft_strlen(str));
+	res = 0;
+	tmp = ft_strnew(ft_strlen(str));
 	while (str[i] != '\0')
 	{
 		if (str[i] == '.')
@@ -64,5 +66,7 @@ int	get_precision(char *str)
 	}
 	if (ft_strchr(str, '.') && (ft_strcmp(tmp, "0") == 0 || tmp[0] == '\0'))
 		return (-1);
-	return (ft_atoi(tmp));
+	res = ft_atoi(tmp);
+	free(tmp);
+	return (res);
 }

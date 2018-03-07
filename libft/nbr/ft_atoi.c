@@ -6,23 +6,22 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:06:43 by cpirlot           #+#    #+#             */
-/*   Updated: 2017/11/13 17:06:32 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:41:20 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	unsigned int	res;
+	long long		res;
 	int				sign;
-	int				max;
-	const char		*s;
+	char			*s;
 
 	sign = 1;
 	res = 0;
-	max = 0;
-	s = ft_skip_whitespace(str);
+	s = (char *)str;
+	s = ft_skip_whitespace(s);
 	if (*s == '-' && s++)
 		sign = -1;
 	else if (*s == '+' && sign != -1)
@@ -31,11 +30,6 @@ int					ft_atoi(const char *str)
 	{
 		res *= 10;
 		res += (*s++ - '0');
-		max++;
 	}
-	if (max > 18 && sign == 1)
-		return (-1);
-	if (max > 18 && sign == -1)
-		return (0);
 	return (res * sign);
 }

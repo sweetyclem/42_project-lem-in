@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 07:36:25 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/01/29 11:57:20 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:22:27 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			get_next_line(int const fd, char **line)
 	char			buff[BUFF_SIZE + 1];
 	static char		*str[OPEN_MAX];
 
+	char_read = 0;
 	if (fd < 0 || fd > OPEN_MAX || !line)
 		return (-1);
 	if (str[fd] == NULL)

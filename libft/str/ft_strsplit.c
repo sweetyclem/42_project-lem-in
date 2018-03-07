@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 09:23:05 by cpirlot           #+#    #+#             */
-/*   Updated: 2017/11/08 11:17:41 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:21:26 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static size_t	nb_words(const char *s, char c)
 	{
 		if (s[i] != c)
 		{
-			if (s[i - 1] == c || i == 0)
+			if (i == 0 || s[i - 1] == c)
 			{
 				nbwords++;
 			}

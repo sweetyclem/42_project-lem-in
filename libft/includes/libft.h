@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 09:47:49 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/02/27 16:51:48 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 07:33:53 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			ft_striteri(char *s, void (f)(unsigned int, char *));
 void			ft_puterror(char *str);
 void			ft_exit_error(char *str);
 char			*ft_strrev(char *str);
-const char		*ft_skip_whitespace(const char *str);
+char			*ft_skip_whitespace(char *str);
 void			ft_print_ptr(size_t nb);
 size_t			ft_ptr_len_base(size_t ptr, unsigned int base);
 void			ft_putwstr(wchar_t *str);
@@ -129,7 +129,7 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 /*
 ** Nbr
 */
-int				ft_atoi(const char *str);
+long long		ft_atoi(const char *str);
 int				ft_atoi_base(const char *str, int base);
 int				ft_abs(int a);
 size_t			ft_longlong_len(long long int nbr);
