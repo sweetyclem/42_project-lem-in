@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 08:59:14 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 09:18:48 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,20 @@ void	parse_line(char *line, t_game *game)
 		get_room(line, game, 0, 0);
 	else if (ft_strchr(line, '-'))
 		get_link(line, game);
+}
+
+void			get_link(char *line, t_game *game)
+{
+	char			**split;
+
+	split = ft_strsplit(line, '-');
+	if (!split[0] || !split[1])
+		ft_exit_error("ERROR: wrong link line format\n");
+	if (!room_exists(game, split[0]) || !room_exists(game, split[1]))
+		ft_exit_error("ERROR: unknown room in link\n");
+	save_connection(game, split[0], split[1]);
+	save_connection(game, split[1], split[0]);
+	free(split[0]);
+	free(split[1]);
+	free(split);
 }

@@ -6,7 +6,7 @@
 #    By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 13:19:02 by cpirlot           #+#    #+#              #
-#    Updated: 2018/03/06 15:44:29 by cpirlot          ###   ########.fr        #
+#    Updated: 2018/03/07 09:20:42 by cpirlot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=  lem-in
 
 CC			= gcc
 FLAGS		= -Wall -Werror -Wextra -g
-SRC			= main.c parse.c game.c room.c connection.c solve.c
+SRC			= main.c parse.c struct_create.c free.c room.c connection.c solve.c print.c
 OBJDIR		= obj
 OBJ	= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 VPATH:=includes/:${VPATH}

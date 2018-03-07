@@ -6,13 +6,13 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:40:06 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 08:59:07 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 09:18:35 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void		create_connection(t_game *game, char *str1, char *str2)
+void		save_connection(t_game *game, char *str1, char *str2)
 {
 	t_connection	*connection;
 	t_room			*room;
@@ -23,22 +23,6 @@ static void		create_connection(t_game *game, char *str1, char *str2)
 	connection = new_connection();
 	connection->name = ft_strdup(str2);
 	room->connections = add_connection_end(room->connections, connection);
-}
-
-void			get_link(char *line, t_game *game)
-{
-	char			**split;
-
-	split = ft_strsplit(line, '-');
-	if (!split[0] || !split[1])
-		ft_exit_error("ERROR: wrong link line format\n");
-	if (!room_exists(game, split[0]) || !room_exists(game, split[1]))
-		ft_exit_error("ERROR: unknown room in link\n");
-	create_connection(game, split[0], split[1]);
-	create_connection(game, split[1], split[0]);
-	free(split[0]);
-	free(split[1]);
-	free(split);
 }
 
 int				connection_in_list(t_connection *list, char *name)

@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 08:51:33 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 08:26:01 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 08:26:43 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int				search_graph(t_game *game)
 	queue->name = ft_strdup(game->start);
 	while (queue)
 	{
-ft_printf("\n");
 		current = find_room(game, queue->name);
 		tmp = queue;
 		queue = queue->next;
@@ -35,14 +34,7 @@ ft_printf("\n");
 		}
 		if (!current->visited)
 			current->visited = 1;
-ft_printf("current : %s\n", current->name);
 		queue = queue_connect(game, current, queue);
-t_connection *lst = queue;
-while(lst)
-{
-	ft_printf("queue : %s\n", lst->name);
-	lst = lst->next;
-}
 	}
 	free(queue);
 	return (0);
@@ -93,11 +85,5 @@ void			find_path(t_game *game)
 			game->path = add_connection(game->path, connection);
 		current_room = find_room(game, connected_name);
 	}
-t_connection	*tmp = game->path;
-while (tmp)
-{
-	ft_printf("\npath item : %s\n", tmp->name);
-	tmp = tmp->next;
-}
 	free(connected_name);
 }

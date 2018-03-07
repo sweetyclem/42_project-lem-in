@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 09:02:54 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 09:39:05 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef struct	s_room
 	struct s_room	*next;
 }				t_room;
 
+typedef struct	s_ant
+{
+	int				nb;
+	t_connection	*step;
+	int				arrived;
+	struct s_ant	*next;
+}				t_ant;
+
 typedef struct	s_game
 {
 	int				nb_ants;
@@ -36,38 +44,54 @@ typedef struct	s_game
 	char			*end;
 	t_room			*rooms;
 	t_connection	*path;
+	t_ant			*ants;
 }				t_game;
 
 /*
-** Structures
+** Create Structures
 */
 t_game			initialize_game(void);
+t_room			*new_room(void);
+t_connection	*new_connection(void);
+t_ant			*new_ant(void);
+
+/*
+** Free Structures
+*/
 void			free_game(t_game *game);
 void			free_connections(t_connection **connections);
-t_room			*new_room(void);
+void			free_ants(t_ant **ants);
+
+void			get_room(char *line, t_game *game, int start, int end);
+int				room_exists(t_game	*game, char	*room);
 t_room			*find_room(t_game *game, char *name);
 void			add_room_end(t_game *game, t_room *room);
-t_connection	*new_connection(void);
-t_connection	*add_connection(t_connection *lst, t_connection *item);
-t_connection	*add_connection_end(t_connection *lst, t_connection *item);
+
+void			save_connection(t_game *game, char *str1, char *str2);
 int				connection_in_list(t_connection *list, char *name);
+t_connection	*add_connection_end(t_connection *lst, t_connection *item);
+t_connection	*add_connection(t_connection *lst, t_connection *item);
 
 /*
 ** Parsing and error handling
 */
 void			read_input(t_game *game);
-void			parse_line(char *line, t_game *game);
 int				get_ant_nb(char *line);
-void			get_room(char *line, t_game *game, int start, int end);
+void			parse_line(char *line, t_game *game);
 void			get_link(char *line, t_game *game);
-int				room_exists(t_game	*game, char	*room);
 
 /*
-** Playing
+** Solving and finding fastest path
 */
 int				search_graph(t_game *game);
 t_connection	*queue_connect(t_game *game, t_room *room, t_connection *queue);
 char			*connection_visited(t_game *game, t_connection *connections);
 void			find_path(t_game *game);
+
+/*
+** Printing ants' position
+*/
+void			print_path(t_game *game);
+t_ant			*create_game_ants(t_game *game);
 
 #endif
