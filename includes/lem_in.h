@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 08:08:38 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 09:02:54 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			read_input(t_game *game);
 void			parse_line(char *line, t_game *game);
 int				get_ant_nb(char *line);
 void			get_room(char *line, t_game *game, int start, int end);
-void			get_pipe(char *line, t_game *game);
+void			get_link(char *line, t_game *game);
 int				room_exists(t_game	*game, char	*room);
 
 /*

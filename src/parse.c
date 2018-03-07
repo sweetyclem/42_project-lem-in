@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 16:54:02 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 08:59:14 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	read_input(t_game *game)
 	if (!game->rooms)
 		ft_exit_error("ERROR: no rooms\n");
 	if (!game->rooms->connections)
-		ft_exit_error("ERROR: no pipes\n");
+		ft_exit_error("ERROR: no links\n");
 }
 
 int		get_ant_nb(char *line)
@@ -75,5 +75,5 @@ void	parse_line(char *line, t_game *game)
 	else if (!ft_strchr(line, '-'))
 		get_room(line, game, 0, 0);
 	else if (ft_strchr(line, '-'))
-		get_pipe(line, game);
+		get_link(line, game);
 }
