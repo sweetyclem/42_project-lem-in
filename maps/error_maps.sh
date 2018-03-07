@@ -25,7 +25,7 @@ echo "--------------------------------------negative ant nb"
 echo "--------------------------------------no end"
 ./lem-in < maps/err_no_end.txt
 echo "--------------------------------------no link"
-./lem-in < maps/err_no_links.txt
+./lem-in < maps/err_no_link.txt
 echo "--------------------------------------no rooms"
 ./lem-in < maps/err_no_rooms.txt
 echo "--------------------------------------no start"

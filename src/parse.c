@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 10:17:47 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 12:03:36 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	parse_line(char *line, t_game *game)
 				ft_exit_error("ERROR: empty line\n");
 			ft_printf("%s\n", line);
 			get_room(line, game, 1, 0);
+			free(line);
 		}
 		else if (ft_strcmp(&line[2], "end") == 0)
 		{
@@ -69,8 +70,8 @@ void	parse_line(char *line, t_game *game)
 				ft_exit_error("ERROR: empty line\n");
 			ft_printf("%s\n", line);
 			get_room(line, game, 0, 1);
+			free(line);
 		}
-		free(line);
 	}
 	else if (!ft_strchr(line, '-'))
 		get_room(line, game, 0, 0);
