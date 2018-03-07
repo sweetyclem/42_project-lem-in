@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 13:33:08 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 14:20:22 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	get_room(char *line, t_game *game, int start, int end)
 	if (room_exists(game, split[0]))
 		ft_exit_error("ERROR: duplicate room name\n");
 	room->name = ft_strdup(split[0]);
-	if (start)
+	if (start && !game->start)
 		game->start = ft_strdup(split[0]);
-	if (end)
+	if (end && !game->end)
 		game->end = ft_strdup(split[0]);
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2])
 	|| ft_atoi(split[1]) < 0 || ft_atoi(split[2]) < 0)

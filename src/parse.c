@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 13:51:18 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 15:11:57 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	read_input(t_game *game)
 	if (!game->start || !game->end)
 		ft_exit_error("ERROR: missing start or end\n");
 	if (!game->rooms)
-		ft_exit_error("ERROR: no rooms\n");
+		ft_exit_error("ERROR: no room\n");
 	if (!game->rooms->connections)
-		ft_exit_error("ERROR: no links\n");
+		ft_exit_error("ERROR: no link\n");
 }
 
 int		get_ant_nb(char *line)
@@ -72,10 +72,15 @@ void	get_start_or_end(t_game *game, int start, int end)
 	get_next_line(0, &line);
 	if (ft_strlen(line) == 0)
 		ft_exit_error("ERROR: empty line\n");
-	if (line[0] == '#')
-		ft_exit_error("ERROR: wrong start or end format\n");
 	ft_printf("%s\n", line);
-	get_room(line, game, start, end);
+	if (start && game->start)
+		ft_exit_error("ERROR: duplicate start\n");
+	if (end && game->end)
+		ft_exit_error("ERROR: duplicate end\n");
+	if (line[0] != '#')
+		get_room(line, game, start, end);
+	else
+		get_start_or_end(game, start, end);
 	free(line);
 }
 
