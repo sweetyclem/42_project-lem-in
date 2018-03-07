@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 09:18:48 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 10:17:47 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	parse_line(char *line, t_game *game)
 		get_link(line, game);
 }
 
-void			get_link(char *line, t_game *game)
+void	get_link(char *line, t_game *game)
 {
 	char			**split;
 

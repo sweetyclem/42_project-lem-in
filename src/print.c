@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 07:55:14 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 09:43:32 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 10:19:45 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	print_path(t_game *game)
 		while (path)
 		{
 			room = find_room(game, path->name);
-			// if (ft_strcmp(room->name, game->end) == 0)
-			// {
-			// }
 			ft_printf("-%s", path->name);
 			path = path->next;
 		}
@@ -47,7 +44,7 @@ t_ant	*create_game_ants(t_game *game)
 {
 	t_ant	*list;
 	t_ant	*item;
-	int 	i;
+	int		i;
 
 	i = game->nb_ants;
 	while (i > 0)

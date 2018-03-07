@@ -6,13 +6,13 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:40:06 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 09:18:35 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 10:18:06 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		save_connection(t_game *game, char *str1, char *str2)
+void			save_connection(t_game *game, char *str1, char *str2)
 {
 	t_connection	*connection;
 	t_room			*room;
