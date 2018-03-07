@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 07:55:14 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 12:07:14 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 13:57:28 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,47 @@ int		nb_rooms_on_path(t_connection *path)
 		result++;
 	}
 	return (result);
+}
+
+void	print_path(t_game *game)
+{
+	int		nb_steps;
+	t_ant	*ants;
+
+	nb_steps = nb_rooms_on_path(game->path) - 1 + game->nb_ants;
+	game->ants = create_game_ants(game);
+	game->ants->started = 1;
+	while (nb_steps > 0)
+	{
+		move_ants(game, game->ants);
+		ants = find_started(game->ants);
+		if (ants->next)
+			ants->next->started = 1;
+		ft_printf("\n");
+		nb_steps--;
+	}
+}
+
+t_ant	*create_game_ants(t_game *game)
+{
+	t_ant	*list;
+	t_ant	*item;
+	int		i;
+
+	list = NULL;
+	i = game->nb_ants;
+	while (i > 0)
+	{
+		item = new_ant();
+		item->nb = i;
+		item->step = game->path;
+		item->started = 0;
+		item->arrived = 0;
+		item->next = list;
+		list = item;
+		i--;
+	}
+	return (list);
 }
 
 t_ant	*find_started(t_ant *lst)
@@ -60,44 +101,4 @@ void	move_ants(t_game *game, t_ant *ants)
 		ants = ants->next;
 		ft_printf(" ");
 	}
-}
-
-void	print_path(t_game *game)
-{
-	int		nb_steps;
-	t_ant	*ants;
-
-	nb_steps = nb_rooms_on_path(game->path) - 1 + game->nb_ants;
-	game->ants = create_game_ants(game);
-	game->ants->started = 1;
-	while (nb_steps > 0)
-	{
-		move_ants(game, game->ants);
-		ants = find_started(game->ants);
-		if (ants->next)
-			ants->next->started = 1;
-		ft_printf("\n");
-		nb_steps--;
-	}
-}
-
-t_ant	*create_game_ants(t_game *game)
-{
-	t_ant	*list;
-	t_ant	*item;
-	int		i;
-
-	i = game->nb_ants;
-	while (i > 0)
-	{
-		item = new_ant();
-		item->nb = i;
-		item->step = game->path;
-		item->started = 0;
-		item->arrived = 0;
-		item->next = list;
-		list = item;
-		i--;
-	}
-	return (list);
 }
