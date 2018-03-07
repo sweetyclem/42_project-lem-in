@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 17:10:27 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 08:09:16 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ t_game			initialize_game(void)
 	game.rooms = NULL;
 	game.path = NULL;
 	return (game);
+}
+
+t_connection	*new_connection(void)
+{
+	t_connection	*connection;
+
+	if (!(connection = malloc(sizeof(t_connection) * 1)))
+		return (NULL);
+	connection->name = NULL;
+	connection->next = NULL;
+	return (connection);
 }
 
 void			free_game(t_game *game)
