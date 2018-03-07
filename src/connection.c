@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:40:06 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/06 17:07:53 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 08:04:08 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,12 @@ t_connection	*add_connection_end(t_connection *lst, t_connection *item)
 		list = list->next;
 	list->next = item;
 	item->next = NULL;
+	return (lst);
+}
+
+t_connection	*add_connection(t_connection *lst, t_connection *item)
+{
+	item->next = lst;
+	lst = item;
 	return (lst);
 }

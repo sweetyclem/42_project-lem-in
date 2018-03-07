@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 07:53:41 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 08:04:22 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_room			*new_room(void);
 t_room			*find_room(t_game *game, char *name);
 void			add_room_end(t_game *game, t_room *room);
 t_connection	*new_connection(void);
+t_connection	*add_connection(t_connection *lst, t_connection *item);
 t_connection	*add_connection_end(t_connection *lst, t_connection *item);
 int				connection_in_list(t_connection *list, char *name);
 
