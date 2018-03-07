@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 13:51:07 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 15:41:20 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_connection	*add_connection(t_connection *lst, t_connection *item);
 ** Parsing and error handling
 */
 void			read_input(t_game *game);
-int				get_ant_nb(char *line);
+void			get_ant_nb(char *line, t_game *game);
 void			parse_line(char *line, t_game *game);
 void			get_start_or_end(t_game *game, int start, int end);
 void			get_link(char *line, t_game *game);

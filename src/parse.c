@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 15:11:57 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 15:41:38 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	read_input(t_game *game)
 {
 	char	*line;
 
-	if (get_next_line(0, &line) == 0 || ft_strlen(line) == 0)
+	if (get_next_line(0, &line) == 0)
 		ft_exit_error("ERROR: empty file\n");
-	game->nb_ants = get_ant_nb(line);
+	get_ant_nb(line, game);
 	free(line);
 	while (get_next_line(0, &line) > 0 && ft_strlen(line) > 0)
 	{
@@ -37,17 +37,25 @@ void	read_input(t_game *game)
 		ft_exit_error("ERROR: no link\n");
 }
 
-int		get_ant_nb(char *line)
+void	get_ant_nb(char *line, t_game *game)
 {
-	int	ants;
+	int		ants;
 
-	if (!ft_isnumber(line))
-		ft_exit_error("ERROR: missing ants number\n");
-	ft_printf("%s\n", line);
-	ants = ft_atoi(line);
-	if (ants <= 0 || ants > 2147483647)
-		ft_exit_error("ERROR: wrong ants number\n");
-	return (ants);
+	if (line == 0)
+		ft_exit_error("ERROR: empty file\n");
+	if (line[0] != '#')
+	{
+		if (!ft_isnumber(line))
+			ft_exit_error("ERROR: missing ants number\n");
+		ft_printf("%s\n", line);
+		ants = ft_atoi(line);
+		if (ants <= 0 || ants > 2147483647)
+			ft_exit_error("ERROR: wrong ants number\n");
+		game->nb_ants = ants;
+	}
+	else if (get_next_line(0, &line) > 0)
+		get_ant_nb(line, game);
+	// free(line);
 }
 
 void	parse_line(char *line, t_game *game)
