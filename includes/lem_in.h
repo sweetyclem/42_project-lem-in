@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 09:39:05 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 11:26:54 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_ant
 {
 	int				nb;
 	t_connection	*step;
+	int				started;
 	int				arrived;
 	struct s_ant	*next;
 }				t_ant;
