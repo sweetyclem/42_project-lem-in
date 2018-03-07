@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 11:26:54 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 12:09:48 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ void			find_path(t_game *game);
 /*
 ** Printing ants' position
 */
+int				nb_rooms_on_path(t_connection *path);
+t_ant			*find_started(t_ant *lst);
+void			move_ants(t_game *game, t_ant *ants);
 void			print_path(t_game *game);
 t_ant			*create_game_ants(t_game *game);
 
