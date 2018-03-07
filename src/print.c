@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 07:55:14 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 13:57:28 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/07 15:49:52 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void	move_ants(t_game *game, t_ant *ants)
 			ants->step = ants->step->next;
 			if (ants->step == NULL)
 				ants->arrived = 1;
+			ft_printf(" ");
 		}
 		ants = ants->next;
-		ft_printf(" ");
 	}
 }
