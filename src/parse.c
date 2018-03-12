@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 16:43:24 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 10:55:31 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	read_input(t_game *game)
 	char	*line;
 
 	if (get_next_line(0, &line) == 0)
-		ft_exit_error("ERROR: empty file\n");
+		free_exit("ERROR: empty file\n", game);
 	get_ant_nb(line, game);
 	free(line);
 	while (get_next_line(0, &line) > 0 && ft_strlen(line) > 0)
@@ -30,11 +30,11 @@ void	read_input(t_game *game)
 	if (line)
 		free(line);
 	if (!game->start || !game->end)
-		ft_exit_error("ERROR: missing start or end\n");
+		free_exit("ERROR: missing start or end\n", game);
 	if (!game->rooms)
-		ft_exit_error("ERROR: no room\n");
+		free_exit("ERROR: no room\n", game);
 	if (!game->rooms->connections)
-		ft_exit_error("ERROR: no link\n");
+		free_exit("ERROR: no link\n", game);
 }
 
 void	get_ant_nb(char *line, t_game *game)
@@ -42,15 +42,15 @@ void	get_ant_nb(char *line, t_game *game)
 	int		ants;
 
 	if (line == 0)
-		ft_exit_error("ERROR: empty file\n");
+		free_exit("ERROR: empty file\n", game);
 	if (line[0] != '#')
 	{
 		if (!ft_isnumber(line))
-			ft_exit_error("ERROR: missing ants number\n");
+			free_exit("ERROR: missing ants number\n", game);
 		ft_printf("%s\n", line);
 		ants = ft_atoi(line);
 		if (ants <= 0 || ants > 2147483647)
-			ft_exit_error("ERROR: wrong ants number\n");
+			free_exit("ERROR: wrong ants number\n", game);
 		game->nb_ants = ants;
 	}
 	else if (get_next_line(0, &line) > 0)
@@ -78,12 +78,12 @@ void	get_start_or_end(t_game *game, int start, int end)
 
 	get_next_line(0, &line);
 	if (ft_strlen(line) == 0)
-		ft_exit_error("ERROR: empty line\n");
+		free_exit("ERROR: empty line\n", game);
 	ft_printf("%s\n", line);
 	if (start && game->start)
-		ft_exit_error("ERROR: duplicate start\n");
+		free_exit("ERROR: duplicate start\n", game);
 	if (end && game->end)
-		ft_exit_error("ERROR: duplicate end\n");
+		free_exit("ERROR: duplicate end\n", game);
 	if (line[0] != '#')
 		get_room(line, game, start, end);
 	else
@@ -97,9 +97,9 @@ void	get_link(char *line, t_game *game)
 
 	split = ft_strsplit(line, '-');
 	if (!split[0] || !split[1])
-		ft_exit_error("ERROR: wrong link line format\n");
+		free_exit("ERROR: wrong link line format\n", game);
 	if (!room_exists(game, split[0]) || !room_exists(game, split[1]))
-		ft_exit_error("ERROR: unknown room in link\n");
+		free_exit("ERROR: unknown room in link\n", game);
 	save_connection(game, split[0], split[1]);
 	save_connection(game, split[1], split[0]);
 	free(split[0]);

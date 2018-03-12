@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:00:47 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/12 07:25:21 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 10:50:04 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(void)
 		print_path(&game);
 	}
 	else
-		ft_exit_error("ERROR: no path found\n");
+		free_exit("ERROR: no path found\n", &game);
 	free_game(&game);
 	return (0);
 }

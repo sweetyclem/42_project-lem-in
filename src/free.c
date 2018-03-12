@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 09:40:03 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 10:57:05 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,12 @@ void			free_ants(t_ant **ants)
 		free(tmp_ant);
 	}
 	free(*ants);
+}
+
+void	free_exit(char *str, t_game *game)
+{
+	if (game)
+		free_game(game);
+	ft_printf("%s", str);
+	exit(0);
 }
