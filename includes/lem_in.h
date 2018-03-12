@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 15:41:20 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 07:25:21 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void			get_link(char *line, t_game *game);
 /*
 ** Solving and finding fastest path
 */
-int				search_graph(t_game *game);
+int				path_exists(t_game *game);
 t_connection	*queue_connect(t_game *game, t_room *room, t_connection *queue);
 char			*connection_visited(t_game *game, t_connection *connections);
 void			find_path(t_game *game);

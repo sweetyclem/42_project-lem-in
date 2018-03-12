@@ -6,13 +6,13 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 08:51:33 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 10:19:05 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 07:25:21 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int				search_graph(t_game *game)
+int				path_exists(t_game *game)
 {
 	t_connection	*queue;
 	t_connection	*tmp;

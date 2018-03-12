@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:00:47 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 14:22:19 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 07:25:21 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 
 	game = initialize_game();
 	read_input(&game);
-	if (search_graph(&game))
+	if (path_exists(&game))
 	{
 		find_path(&game);
 		print_path(&game);
