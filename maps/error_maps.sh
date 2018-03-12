@@ -10,6 +10,8 @@ echo "--------------------------------------bad start 2"
 ./lem-in < maps/errors/err_bad_start2.txt
 echo "--------------------------------------start is end"
 ./lem-in < maps/errors/err_start_is_end.txt
+echo "--------------------------------------room defined after link"
+./lem-in < maps/errors/err_part2_before_part1.txt
 echo "--------------------------------------duplicate start"
 ./lem-in < maps/errors/err_double_start.txt
 echo "--------------------------------------duplicate end"
@@ -46,3 +48,4 @@ echo "--------------------------------------duplicate room"
 ./lem-in < maps/errors/err_duplicate.txt
 echo "--------------------------------------no path"
 ./lem-in < maps/errors/err_no_path.txt
+echo "---------------------------------------------"

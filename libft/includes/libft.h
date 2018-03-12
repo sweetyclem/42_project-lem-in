@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 09:47:49 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 07:33:53 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 08:44:04 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void			ft_putnwstr(wchar_t *str, int n);
 int				ft_wstrlen(wchar_t *str);
 int				ft_wstrnlen(wchar_t *str, int len);
 int				get_next_line(const int fd, char **line);
-void			ft_free_array(char ***array);
+void			ft_free_array(char ***array, int size);
 int				ft_isnumber(char *str);
 
 /*

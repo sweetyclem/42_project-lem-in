@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 14:20:22 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 08:43:33 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	get_room(char *line, t_game *game, int start, int end)
 	t_room	*room;
 
 	room = new_room();
+	if (game->rooms && !(game->rooms->connections == NULL))
+		ft_exit_error("ERROR: link before room\n");
 	split = ft_strsplit(line, ' ');
 	if (!split[0] || !split[1] || !split[2])
 		ft_exit_error("ERROR: wrong room line format\n");
@@ -35,10 +37,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 		ft_exit_error("ERROR: wrong format for coordinates\n");
 	room->next = NULL;
 	add_room_end(game, room);
-	free(split[0]);
-	free(split[1]);
-	free(split[2]);
-	free(split);
+	ft_free_array(&split, 3);
 }
 
 int		room_exists(t_game *game, char *room)

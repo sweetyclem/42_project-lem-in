@@ -6,20 +6,20 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 09:29:40 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/01/31 11:40:31 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/12 08:44:13 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_array(char ***array)
+void	ft_free_array(char ***array, int size)
 {
 	int i;
 
 	i = 0;
-	while (*array[i])
+	while (i < size)
 	{
-		free(*array[i++]);
+		free((*array)[i++]);
 	}
 	free(*array);
 }
