@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 07:55:14 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/07 15:49:52 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:53:05 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	print_path(t_game *game)
 	nb_steps = nb_rooms_on_path(game->path) - 1 + game->nb_ants;
 	game->ants = create_game_ants(game);
 	game->ants->started = 1;
+	ft_printf("\n");
 	while (nb_steps > 0)
 	{
 		move_ants(game, game->ants);

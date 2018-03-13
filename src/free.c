@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 13:20:44 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:25:02 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			free_ants(t_ant **ants)
 	free(*ants);
 }
 
-void			free_exit(t_game *game)
+int				free_exit(t_game *game)
 {
 	if (!game->nb_ants || !game->start || !game->end || !game->rooms
 	|| !game->rooms->connections)
@@ -69,4 +69,6 @@ void			free_exit(t_game *game)
 		ft_printf("ERROR\n");
 		exit(0);
 	}
+	else
+		return (0);
 }

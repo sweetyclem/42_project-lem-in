@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 13:01:09 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:57:28 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ void	get_link(char *line, t_game *game)
 	char			**split;
 
 	split = ft_strsplit(line, '-');
-	if (!split[0] || !split[1])
-		free_exit(game);
-	if (!room_exists(game, split[0]) || !room_exists(game, split[1]))
-		free_exit(game);
+	if (!split[0] || !split[1] || !room_exists(game, split[0])
+	|| !room_exists(game, split[1]))
+	{
+		if (!free_exit(game))
+			return ;
+	}
 	save_connection(game, split[0], split[1]);
 	save_connection(game, split[1], split[0]);
 	free(split[0]);
