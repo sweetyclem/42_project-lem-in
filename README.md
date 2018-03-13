@@ -3,13 +3,13 @@ In this project, an anthill has to go through a graph-like maze, from a given st
 
 
 The program takes in an input formatted as such :  
-100          //number of ants . 
-##start      //indicates that the following room description is the start room . 
-start 1 3    //room_name x y (for the visualizer bonus, not used in my project) . 
-##end . 
-end 3 5 . 
-start-end    //link between rooms . 
+100          //number of ants   
+##start      //indicates that the following room description is the start room   
+start 1 3    //room_name x y (for the visualizer bonus, not used in my project)   
+##end   
+end 3 5   
+start-end    //link between rooms   
 
-To try the game, clone the repository and type the following commands :  
-make . 
+To try the game, clone the repository and type the following commands :   
+make   
 ./lem-in < maps/1.map (provides a text file with the description of a graph, other examples are in the maps folder)
