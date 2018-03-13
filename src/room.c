@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 13:07:43 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:13:31 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	get_room(char *line, t_game *game, int start, int end)
 {
 	char	**split;
 	t_room	*room;
-	int		can_play
 
 	room = new_room();
 	if (game->rooms && !(game->rooms->connections == NULL))
+	{
+		ft_printf("links before room\n");
 		free_exit(game);
+	}
 	split = ft_strsplit(line, ' ');
 	if (!split[0] || !split[1] || !split[2] || split[0][0] == 'L'
 	|| room_exists(game, split[0]))
