@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 15:40:01 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 16:28:36 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	read_input(t_game *game)
 		if (!(line[0] == '#' && line[1] != '#'))
 		{
 			if (!parse_line(line, game))
+			{
+				free(line);
 				return ;
+			}
 		}
 		free(line);
 	}
@@ -53,7 +56,10 @@ void	get_ant_nb(char *line, t_game *game)
 		game->nb_ants = ants;
 	}
 	else if (get_next_line(0, &line) > 0)
+	{
 		get_ant_nb(line, game);
+		free(line);
+	}
 }
 
 int		parse_line(char *line, t_game *game)
