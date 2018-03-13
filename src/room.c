@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 14:15:36 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 14:22:14 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ void	get_room(char *line, t_game *game, int start, int end)
 	char	**split;
 	t_room	*room;
 
-	room = new_room();
 	split = ft_strsplit(line, ' ');
 	if ((game->rooms && game->rooms->connections) || !split[0] || !split[1]
 	|| !split[2] || split[0][0] == 'L' || room_exists(game, split[0]))
 	{
 		if (!exit_incomplete_game(game))
+		{
+			ft_free_array(&split, 1);
 			return ;
+		}
 	}
+	room = new_room();
 	room->name = ft_strdup(split[0]);
 	if (start && !game->start)
 		game->start = ft_strdup(split[0]);
@@ -32,10 +35,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 		game->end = ft_strdup(split[0]);
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2])
 	|| ft_atoi(split[1]) < 0 || ft_atoi(split[2]) < 0)
-	{
-		if (!exit_incomplete_game(game))
-			return ;
-	}
+		exit_incomplete_game(game);
 	room->next = NULL;
 	add_room_end(game, room);
 	ft_free_array(&split, 3);
