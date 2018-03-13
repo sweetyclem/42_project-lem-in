@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 13:59:24 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 14:15:36 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 	if ((game->rooms && game->rooms->connections) || !split[0] || !split[1]
 	|| !split[2] || split[0][0] == 'L' || room_exists(game, split[0]))
 	{
-		if (!exit_if_incomplete_game(game))
+		if (!exit_incomplete_game(game))
 			return ;
 	}
 	room->name = ft_strdup(split[0]);
@@ -33,7 +33,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2])
 	|| ft_atoi(split[1]) < 0 || ft_atoi(split[2]) < 0)
 	{
-		if (!exit_if_incomplete_game(game))
+		if (!exit_incomplete_game(game))
 			return ;
 	}
 	room->next = NULL;

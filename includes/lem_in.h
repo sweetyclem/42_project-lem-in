@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 13:59:24 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 14:15:36 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_ant			*new_ant(void);
 void			free_game(t_game *game);
 void			free_connections(t_connection **connections);
 void			free_ants(t_ant **ants);
-int				exit_if_incomplete_game(t_game *game);
+int				exit_incomplete_game(t_game *game);
 
 void			get_room(char *line, t_game *game, int start, int end);
 int				room_exists(t_game	*game, char	*room);
