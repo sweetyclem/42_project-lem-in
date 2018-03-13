@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 13:57:28 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:59:24 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	read_input(t_game *game)
 	char	*line;
 
 	if (get_next_line(0, &line) == 0)
-		free_exit(game);
+		exit_if_incomplete_game(game);
 	get_ant_nb(line, game);
 	free(line);
 	while (get_next_line(0, &line) > 0 && ft_strlen(line) > 0)
@@ -30,7 +30,7 @@ void	read_input(t_game *game)
 	if (line)
 		free(line);
 	if (!game->start || !game->end || !game->rooms || !game->rooms->connections)
-		free_exit(game);
+		exit_if_incomplete_game(game);
 }
 
 void	get_ant_nb(char *line, t_game *game)
@@ -38,15 +38,15 @@ void	get_ant_nb(char *line, t_game *game)
 	int		ants;
 
 	if (line == 0)
-		free_exit(game);
+		exit_if_incomplete_game(game);
 	if (line[0] != '#')
 	{
 		if (!ft_isnumber(line))
-			free_exit(game);
+			exit_if_incomplete_game(game);
 		ft_printf("%s\n", line);
 		ants = ft_atoi(line);
 		if (ants <= 0 || ants > 2147483647)
-			free_exit(game);
+			exit_if_incomplete_game(game);
 		game->nb_ants = ants;
 	}
 	else if (get_next_line(0, &line) > 0)
@@ -74,7 +74,7 @@ void	get_start_or_end(t_game *game, int start, int end)
 
 	get_next_line(0, &line);
 	if (ft_strlen(line) == 0 || (start && game->start) || (end && game->end))
-		free_exit(game);
+		exit_if_incomplete_game(game);
 	ft_printf("%s\n", line);
 	if (line[0] != '#')
 		get_room(line, game, start, end);
@@ -91,7 +91,7 @@ void	get_link(char *line, t_game *game)
 	if (!split[0] || !split[1] || !room_exists(game, split[0])
 	|| !room_exists(game, split[1]))
 	{
-		if (!free_exit(game))
+		if (!exit_if_incomplete_game(game))
 			return ;
 	}
 	save_connection(game, split[0], split[1]);

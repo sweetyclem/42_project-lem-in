@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 15:40:06 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 13:00:03 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:59:24 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			save_connection(t_game *game, char *str1, char *str2)
 
 	room = find_room(game, str1);
 	if (connection_in_list(room->connections, str2))
-		free_exit(game);
+		exit_if_incomplete_game(game);
 	connection = new_connection();
 	connection->name = ft_strdup(str2);
 	room->connections = add_connection_end(room->connections, connection);
