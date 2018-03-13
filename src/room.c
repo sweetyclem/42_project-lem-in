@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/12 10:50:45 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:07:43 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ void	get_room(char *line, t_game *game, int start, int end)
 {
 	char	**split;
 	t_room	*room;
+	int		can_play
 
 	room = new_room();
 	if (game->rooms && !(game->rooms->connections == NULL))
-		free_exit("ERROR: link before room\n", game);
+		free_exit(game);
 	split = ft_strsplit(line, ' ');
-	if (!split[0] || !split[1] || !split[2])
-		free_exit("ERROR: wrong room line format\n", game);
-	if (split[0][0] == 'L')
-		free_exit("ERROR: room name can't start with an 'L'\n", game);
-	if (room_exists(game, split[0]))
-		free_exit("ERROR: duplicate room name\n", game);
+	if (!split[0] || !split[1] || !split[2] || split[0][0] == 'L'
+	|| room_exists(game, split[0]))
+		free_exit(game);
 	room->name = ft_strdup(split[0]);
 	if (start && !game->start)
 		game->start = ft_strdup(split[0]);
@@ -34,7 +32,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 		game->end = ft_strdup(split[0]);
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2])
 	|| ft_atoi(split[1]) < 0 || ft_atoi(split[2]) < 0)
-		free_exit("ERROR: wrong format for coordinates\n", game);
+		free_exit(game);
 	room->next = NULL;
 	add_room_end(game, room);
 	ft_free_array(&split, 3);

@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 10:11:22 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/12 10:59:43 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 13:08:05 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,19 @@ void			free_ants(t_ant **ants)
 	free(*ants);
 }
 
-void			free_exit(char *str, t_game *game)
+int				free_exit(t_game *game)
 {
-	if (game)
-		free_game(game);
-	ft_printf("%s", str);
-	exit(0);
+	if (!game->nb_ants || !game->start || !game->end || !game->rooms
+	|| !game->rooms->connections)
+	{
+		return (0);
+	}
+	else
+	{
+		if (game)
+			free_game(game);
+		ft_printf("ERROR\n");
+		exit(0);
+	}
+	return (1);
 }
