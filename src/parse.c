@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 14:31:32 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 15:40:01 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	read_input(t_game *game)
 	{
 		ft_printf("%s\n", line);
 		if (!(line[0] == '#' && line[1] != '#'))
-			parse_line(line, game);
+		{
+			if (!parse_line(line, game))
+				return ;
+		}
 		free(line);
 	}
 	if (line)
@@ -53,8 +56,11 @@ void	get_ant_nb(char *line, t_game *game)
 		get_ant_nb(line, game);
 }
 
-void	parse_line(char *line, t_game *game)
+int		parse_line(char *line, t_game *game)
 {
+	int ret;
+
+	ret = 1;
 	if (line[0] == '#' && line[1] == '#')
 	{
 		if (ft_strcmp(&line[2], "start") == 0)
@@ -63,9 +69,10 @@ void	parse_line(char *line, t_game *game)
 			get_start_or_end(game, 0, 1);
 	}
 	else if (!ft_strchr(line, '-'))
-		get_room(line, game, 0, 0);
+		ret = get_room(line, game, 0, 0);
 	else if (ft_strchr(line, '-'))
-		get_link(line, game);
+		ret = get_link(line, game);
+	return (ret);
 }
 
 void	get_start_or_end(t_game *game, int start, int end)
@@ -83,7 +90,7 @@ void	get_start_or_end(t_game *game, int start, int end)
 	free(line);
 }
 
-void	get_link(char *line, t_game *game)
+int		get_link(char *line, t_game *game)
 {
 	char			**split;
 
@@ -92,9 +99,10 @@ void	get_link(char *line, t_game *game)
 	|| !room_exists(game, split[1]))
 	{
 		if (!exit_incomplete_game(game))
-			return ;
+			return (0);
 	}
 	save_connection(game, split[0], split[1]);
 	save_connection(game, split[1], split[0]);
 	ft_free_array(&split);
+	return (1);
 }

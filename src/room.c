@@ -6,13 +6,13 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 14:31:27 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 15:39:03 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	get_room(char *line, t_game *game, int start, int end)
+int		get_room(char *line, t_game *game, int start, int end)
 {
 	char	**split;
 	t_room	*room;
@@ -24,7 +24,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 		if (!exit_incomplete_game(game))
 		{
 			ft_free_array(&split);
-			return ;
+			return (0);
 		}
 	}
 	room = new_room();
@@ -35,10 +35,14 @@ void	get_room(char *line, t_game *game, int start, int end)
 		game->end = ft_strdup(split[0]);
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2])
 	|| ft_atoi(split[1]) < 0 || ft_atoi(split[2]) < 0)
+	{
 		exit_incomplete_game(game);
+		return (0);
+	}
 	room->next = NULL;
 	add_room_end(game, room);
 	ft_free_array(&split);
+	return (1);
 }
 
 int		room_exists(t_game *game, char *room)

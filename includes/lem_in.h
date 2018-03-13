@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 07:11:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 14:15:36 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 15:38:07 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			free_connections(t_connection **connections);
 void			free_ants(t_ant **ants);
 int				exit_incomplete_game(t_game *game);
 
-void			get_room(char *line, t_game *game, int start, int end);
+int				get_room(char *line, t_game *game, int start, int end);
 int				room_exists(t_game	*game, char	*room);
 t_room			*find_room(t_game *game, char *name);
 void			add_room_end(t_game *game, t_room *room);
@@ -79,9 +79,9 @@ t_connection	*add_connection(t_connection *lst, t_connection *item);
 */
 void			read_input(t_game *game);
 void			get_ant_nb(char *line, t_game *game);
-void			parse_line(char *line, t_game *game);
+int				parse_line(char *line, t_game *game);
 void			get_start_or_end(t_game *game, int start, int end);
-void			get_link(char *line, t_game *game);
+int				get_link(char *line, t_game *game);
 
 /*
 ** Solving and finding fastest path
