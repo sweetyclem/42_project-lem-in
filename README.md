@@ -12,4 +12,6 @@ start-end    //link between rooms
 
 To try the game, clone the repository and type the following commands :   
 make   
-./lem-in < maps/1.map (provides a text file with the description of a graph, other examples are in the maps folder)
+./lem-in < maps/1.map    
+
+Other examples of graphs are in the maps folder
