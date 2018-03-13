@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 15:39:03 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 16:04:37 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,8 @@ int		get_room(char *line, t_game *game, int start, int end)
 	t_room	*room;
 
 	split = ft_strsplit(line, ' ');
-	if ((game->rooms && game->rooms->connections) || !split[0] || !split[1]
-	|| !split[2] || split[0][0] == 'L' || room_exists(game, split[0]))
-	{
-		if (!exit_incomplete_game(game))
-		{
-			ft_free_array(&split);
-			return (0);
-		}
-	}
+	if (room_format_error(game, split))
+		return (0);
 	room = new_room();
 	room->name = ft_strdup(split[0]);
 	if (start && !game->start)
@@ -35,14 +28,25 @@ int		get_room(char *line, t_game *game, int start, int end)
 		game->end = ft_strdup(split[0]);
 	if (!ft_isnumber(split[1]) || !ft_isnumber(split[2])
 	|| ft_atoi(split[1]) < 0 || ft_atoi(split[2]) < 0)
-	{
-		exit_incomplete_game(game);
 		return (0);
-	}
-	room->next = NULL;
 	add_room_end(game, room);
 	ft_free_array(&split);
 	return (1);
+}
+
+int		room_format_error(t_game *game, char **split)
+{
+	if ((game->rooms && game->rooms->connections) || !split[0] || !split[1]
+	|| split[3] != NULL || !split[2] || split[0][0] == 'L'
+	|| room_exists(game, split[0]))
+	{
+		if (!exit_incomplete_game(game))
+		{
+			ft_free_array(&split);
+			return (1);
+		}
+	}
+	return (0);
 }
 
 int		room_exists(t_game *game, char *room)
