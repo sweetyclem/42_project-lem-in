@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 13:07:28 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 14:22:14 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 14:31:27 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 	{
 		if (!exit_incomplete_game(game))
 		{
-			ft_free_array(&split, 1);
+			ft_free_array(&split);
 			return ;
 		}
 	}
@@ -38,7 +38,7 @@ void	get_room(char *line, t_game *game, int start, int end)
 		exit_incomplete_game(game);
 	room->next = NULL;
 	add_room_end(game, room);
-	ft_free_array(&split, 3);
+	ft_free_array(&split);
 }
 
 int		room_exists(t_game *game, char *room)

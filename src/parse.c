@@ -6,7 +6,7 @@
 /*   By: cpirlot <cpirlot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 08:13:27 by cpirlot           #+#    #+#             */
-/*   Updated: 2018/03/13 14:21:06 by cpirlot          ###   ########.fr       */
+/*   Updated: 2018/03/13 14:31:32 by cpirlot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,5 @@ void	get_link(char *line, t_game *game)
 	}
 	save_connection(game, split[0], split[1]);
 	save_connection(game, split[1], split[0]);
-	ft_free_array(&split, 2);
+	ft_free_array(&split);
 }
